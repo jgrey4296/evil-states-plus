@@ -1,6 +1,6 @@
 ;;; paren-state.el -*- lexical-binding: t; no-byte-compile: t; -*-
 
-(require 'evil)
+(require 'evil-core)
 (require 'smartparens)
 
 (evil-define-state paren

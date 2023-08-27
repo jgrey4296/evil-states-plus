@@ -1,4 +1,5 @@
 ;;; -*- lexical-binding: t; -*-
+(require 'evil-core)
 (require 'smerge-mode)
 
 (defvar evil-conflict-merge-state-map (make-keymap))

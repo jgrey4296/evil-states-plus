@@ -18,24 +18,13 @@
 ;;
 ;;
 ;;; Code:
-(require 'evil)
+(require 'evil-core)
 
 (defvar insert-plus-sep "_")
-
 (defvar evil-insert-plus-state-map
   (make-sparse-keymap)
   "Keymap for Insert State with spaces remapped.")
 
-;;;###autoload
-(evil-define-state insert-plus
-  "Insert State with spaces remapped"
-  :tag "<I+>"
-  :message "-- Insert+ --"
-  :suppress-keymap nil
-  :entry-hook (evil-start-track-last-insertion)
-  :exit-hook  (evil-stop-track-last-insertion)
-  :input-method nil
-  )
 
 (defun insert-plus-set-sep (str)
   (interactive (list (read-string (format "Separator: ('%s') " insert-plus-sep))))
@@ -48,9 +37,9 @@
   )
 
 (define-key evil-insert-plus-state-map [escape] #'evil-normal-state)
-(define-key evil-insert-plus-state-map "SPC" #'insert-plus-insert-sep)
+(define-key evil-insert-plus-state-map (kbd "SPC") #'insert-plus-insert-sep)
 (define-key evil-insert-plus-state-map "§"   #'insert-plus-set-sep)
-(define-key evil-insert-plus-state-map "TAB" #'evil-insert-state)
+(define-key evil-insert-plus-state-map (kbd "TAB") #'evil-insert-state)
 ;; TODO map a control to choose the SPC replacement
 
 
@@ -64,4 +53,15 @@
   (advice-add 'evil--get-appropriate-func :before-until #'insert-plus-escape-advice)
   )
 
-(provide 'insert-plus-state)]
+;;;###autoload
+(evil-define-state insert-plus
+  "Insert State with spaces remapped"
+  :tag "<I+>"
+  :message "-- Insert+ --"
+  :suppress-keymap nil
+  :entry-hook (evil-start-track-last-insertion)
+  :exit-hook  (evil-stop-track-last-insertion)
+  :input-method nil
+  )
+
+(provide 'insert-plus-state)
