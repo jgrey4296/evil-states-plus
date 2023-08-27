@@ -24,6 +24,7 @@
 
 (require 'paren-state)
 (require 'insert-plus-state)
+(require 'conflict-merge-state)
 
 (provide 'evil-states-plus)
 ;;; evil-states-plus.el ends here
