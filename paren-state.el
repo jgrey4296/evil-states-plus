@@ -3,17 +3,6 @@
 (require 'evil-core)
 (require 'smartparens)
 
-(evil-define-state paren
-  "Paren State"
-  :tag "<P>"
-  :message "-- Paren --"
-  ;; :enable (motion)
-  ;; :input-method t
-  ;; :suppress-keymap t
-  (setq-local sp-navigate-reindent-after-up nil
-              sp-navigate-reindent-after-up-in-string nil
-              )
-  )
 
 ;; (evil-add-hjkl-bindings global-map 'paren)
 (suppress-keymap evil-paren-state-map)
@@ -37,5 +26,18 @@
 ;; (evil-global-set-key 'paren "x" #'sp-backward-sexp)
 ;; (evil-global-set-key 'paren "x" #'sp-forward-parallel-sexp)
 ;; (evil-global-set-key 'paren "x" #'sp-forward-sexp)
+
+;;;###autoload (autoload 'evil-paren-state (macroexp-file-name) nil t)
+(evil-define-state paren
+  "Paren State"
+  :tag "<P>"
+  :message "-- Paren --"
+  ;; :enable (motion)
+  ;; :input-method t
+  ;; :suppress-keymap t
+  (setq-local sp-navigate-reindent-after-up nil
+              sp-navigate-reindent-after-up-in-string nil
+              )
+  )
 
 (provide 'paren-state)

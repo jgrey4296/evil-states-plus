@@ -53,7 +53,7 @@
   (advice-add 'evil--get-appropriate-func :before-until #'insert-plus-escape-advice)
   )
 
-;;;###autoload
+;;;###autoload (autoload 'evil-insert-plus-state (macroexp-file-name) nil t)
 (evil-define-state insert-plus
   "Insert State with spaces remapped"
   :tag "<I+>"

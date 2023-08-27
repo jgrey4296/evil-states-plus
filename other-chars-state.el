@@ -407,7 +407,7 @@
 ;;-- end assemble
 
 
-;;;###autoload
+;;;###autoload (autoload 'evil-other-chars-state (macroexp-file-name) nil t)
 (evil-define-state other-chars
   "An Insert State for characters not usually used in english"
   :tag "<ç>"

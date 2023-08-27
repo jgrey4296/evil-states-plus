@@ -5,7 +5,7 @@
 (defvar evil-conflict-merge-state-map (make-keymap))
 (evil-make-intercept-map evil-conflict-merge-state-map)
 
-;;;###autoload (autoload 'evil-conflict-merge-state "ide/version-control/autoload/conflict-merge-state" nil t)
+;;;###autoload (autoload 'evil-conflict-merge-state (macroexp-file-name) nil t)
  (evil-define-state conflict-merge
     "Merge Conflict State."
     :tag "<MC>"
