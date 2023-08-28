@@ -37,7 +37,7 @@
 
 (defvar other-chars-cedilla-map      (make-sparse-keymap))
 
-(defvar other-chars-diaeresis-map   (make-sparse-keymap))
+(defvar other-chars-diaeresis-map    (make-sparse-keymap))
 
 (defvar other-chars-greek-map        (make-sparse-keymap))
 
@@ -357,7 +357,7 @@
 
 (define-key other-chars-cx8-map         ","               other-chars-cedilla-map)
 
-(define-key other-chars-cx8-map         "\""              other-charst-diaeresis-map)
+(define-key other-chars-cx8-map         "\""              other-chars-diaeresis-map)
 
 (define-key other-chars-cx8-map         "g"               other-chars-greek-map)
 
@@ -383,7 +383,7 @@
 
 (define-key evil-other-chars-state-map         ","               other-chars-cedilla-map)
 
-(define-key evil-other-chars-state-map         "\""              other-charst-diaeresis-map)
+(define-key evil-other-chars-state-map         "\""              other-chars-diaeresis-map)
 
 (define-key evil-other-chars-state-map         "g"               other-chars-greek-map)
 
