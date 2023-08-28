@@ -55,357 +55,254 @@
 
 ;;-- acute
 
-(define-key other-chars-acute-map "'" (other-chars--insert "´"))
-
-(define-key other-chars-acute-map "a" (other-chars--insert "á"))
-
-(define-key other-chars-acute-map "c" (other-chars--insert "ć"))
-
-(define-key other-chars-acute-map "e" (other-chars--insert "é"))
-
-(define-key other-chars-acute-map "g" (other-chars--insert "ǵ"))
-
-(define-key other-chars-acute-map "i" (other-chars--insert "í"))
-
-(define-key other-chars-acute-map "k" (other-chars--insert "ḱ"))
-
-(define-key other-chars-acute-map "l" (other-chars--insert "ĺ"))
-
-(define-key other-chars-acute-map "m" (other-chars--insert "ḿ"))
-
-(define-key other-chars-acute-map "n" (other-chars--insert "ń"))
-
-(define-key other-chars-acute-map "o" (other-chars--insert "ó"))
-
-(define-key other-chars-acute-map "p" (other-chars--insert "ṕ"))
-
-(define-key other-chars-acute-map "r" (other-chars--insert "ŕ"))
-
-(define-key other-chars-acute-map "s" (other-chars--insert "ś"))
-
-(define-key other-chars-acute-map "u" (other-chars--insert "ú"))
-
-(define-key other-chars-acute-map "w" (other-chars--insert "ẃ"))
-
-(define-key other-chars-acute-map "y" (other-chars--insert "ý"))
-
-(define-key other-chars-acute-map "z" (other-chars--insert "ź"))
+(evil-define-key nil other-chars-acute-map
+  "'" (other-chars--insert "´")
+  "a" (other-chars--insert "á")
+  "c" (other-chars--insert "ć")
+  "e" (other-chars--insert "é")
+  "g" (other-chars--insert "ǵ")
+  "i" (other-chars--insert "í")
+  "k" (other-chars--insert "ḱ")
+  "l" (other-chars--insert "ĺ")
+  "m" (other-chars--insert "ḿ")
+  "n" (other-chars--insert "ń")
+  "o" (other-chars--insert "ó")
+  "p" (other-chars--insert "ṕ")
+  "r" (other-chars--insert "ŕ")
+  "s" (other-chars--insert "ś")
+  "u" (other-chars--insert "ú")
+  "w" (other-chars--insert "ẃ")
+  "y" (other-chars--insert "ý")
+  "z" (other-chars--insert "ź")
+  )
 ;;-- end acute
 
 ;;-- cedilla
 
-
-(define-key other-chars-cedilla-map "c"  (other-chars--insert "ç"))
-
-(define-key other-chars-cedilla-map "d"  (other-chars--insert "ḑ"))
-
-(define-key other-chars-cedilla-map "e"  (other-chars--insert "ȩ"))
-
-(define-key other-chars-cedilla-map "g"  (other-chars--insert "ģ"))
-
-(define-key other-chars-cedilla-map "h"  (other-chars--insert "ḩ"))
-
-(define-key other-chars-cedilla-map "k"  (other-chars--insert "ķ"))
-
-(define-key other-chars-cedilla-map "l"  (other-chars--insert "ļ"))
-
-(define-key other-chars-cedilla-map "n"  (other-chars--insert "ņ"))
-
-(define-key other-chars-cedilla-map "r"  (other-chars--insert "ŗ"))
-
-(define-key other-chars-cedilla-map "s"  (other-chars--insert "ş"))
-
-(define-key other-chars-cedilla-map "t"  (other-chars--insert "ţ"))
+(evil-define-key nil other-chars-cedilla-map
+  "c"  (other-chars--insert "ç")
+  "d"  (other-chars--insert "ḑ")
+  "e"  (other-chars--insert "ȩ")
+  "g"  (other-chars--insert "ģ")
+  "h"  (other-chars--insert "ḩ")
+  "k"  (other-chars--insert "ķ")
+  "l"  (other-chars--insert "ļ")
+  "n"  (other-chars--insert "ņ")
+  "r"  (other-chars--insert "ŗ")
+  "s"  (other-chars--insert "ş")
+  "t"  (other-chars--insert "ţ")
+  )
 ;;-- end cedilla
 
 ;;-- diaresis
-
-(define-key other-chars-diaeresis-map "a"  (other-chars--insert "ä"))
-
-(define-key other-chars-diaeresis-map "e"  (other-chars--insert "ë"))
-
-(define-key other-chars-diaeresis-map "h"  (other-chars--insert "ḧ"))
-
-(define-key other-chars-diaeresis-map "i"  (other-chars--insert "ï"))
-
-(define-key other-chars-diaeresis-map "o"  (other-chars--insert "ö"))
-
-(define-key other-chars-diaeresis-map "t"  (other-chars--insert "ẗ"))
-
-(define-key other-chars-diaeresis-map "u"  (other-chars--insert "ü"))
-
-(define-key other-chars-diaeresis-map "w"  (other-chars--insert "ẅ"))
-
-(define-key other-chars-diaeresis-map "x"  (other-chars--insert "ẍ"))
-
-(define-key other-chars-diaeresis-map "y"  (other-chars--insert "ÿ"))
+(evil-define-key nil other-chars-diaeresis-map
+  "a"  (other-chars--insert "ä")
+  "e"  (other-chars--insert "ë")
+  "h"  (other-chars--insert "ḧ")
+  "i"  (other-chars--insert "ï")
+  "o"  (other-chars--insert "ö")
+  "t"  (other-chars--insert "ẗ")
+  "u"  (other-chars--insert "ü")
+  "w"  (other-chars--insert "ẅ")
+  "x"  (other-chars--insert "ẍ")
+  "y"  (other-chars--insert "ÿ")
+  )
 ;;-- end diaresis
 
 ;;-- greek
 
-(define-key other-chars-greek-map "a"  (other-chars--insert "α"))
-
-(define-key other-chars-greek-map "b"  (other-chars--insert "β"))
-
-(define-key other-chars-greek-map "c"  (other-chars--insert "γ"))
-
-(define-key other-chars-greek-map "d"  (other-chars--insert "δ"))
-
-(define-key other-chars-greek-map "e"  (other-chars--insert "ε"))
-
-(define-key other-chars-greek-map "f"  (other-chars--insert "ζ"))
-
-(define-key other-chars-greek-map "g"  (other-chars--insert "η"))
-
-(define-key other-chars-greek-map "h"  (other-chars--insert "θ"))
-
-(define-key other-chars-greek-map "i"  (other-chars--insert "ι"))
-
-(define-key other-chars-greek-map "k"  (other-chars--insert "κ"))
-
-(define-key other-chars-greek-map "l"  (other-chars--insert "λ"))
-
-(define-key other-chars-greek-map "m"  (other-chars--insert "μ"))
-
-(define-key other-chars-greek-map "n"  (other-chars--insert "ν"))
-
-(define-key other-chars-greek-map "x"  (other-chars--insert "ξ"))
-
-(define-key other-chars-greek-map "o"  (other-chars--insert "ο"))
-
-(define-key other-chars-greek-map "p"  (other-chars--insert "π"))
-
-(define-key other-chars-greek-map "r"  (other-chars--insert "ρ"))
-
-(define-key other-chars-greek-map "s"  (other-chars--insert "σ"))
-
-(define-key other-chars-greek-map "t"  (other-chars--insert "τ"))
-
-(define-key other-chars-greek-map "u"  (other-chars--insert "υ"))
-
-(define-key other-chars-greek-map "v"  (other-chars--insert "φ"))
-
-(define-key other-chars-greek-map "x"  (other-chars--insert "χ"))
-
-(define-key other-chars-greek-map "y"  (other-chars--insert "ψ"))
-
-(define-key other-chars-greek-map "z"  (other-chars--insert "ω"))
+(evil-define-key nil other-chars-greek-map
+  "a"  (other-chars--insert "α")
+  "b"  (other-chars--insert "β")
+  "c"  (other-chars--insert "γ")
+  "d"  (other-chars--insert "δ")
+  "e"  (other-chars--insert "ε")
+  "f"  (other-chars--insert "ζ")
+  "g"  (other-chars--insert "η")
+  "h"  (other-chars--insert "θ")
+  "i"  (other-chars--insert "ι")
+  "k"  (other-chars--insert "κ")
+  "l"  (other-chars--insert "λ")
+  "m"  (other-chars--insert "μ")
+  "n"  (other-chars--insert "ν")
+  "x"  (other-chars--insert "ξ")
+  "o"  (other-chars--insert "ο")
+  "p"  (other-chars--insert "π")
+  "r"  (other-chars--insert "ρ")
+  "s"  (other-chars--insert "σ")
+  "t"  (other-chars--insert "τ")
+  "u"  (other-chars--insert "υ")
+  "v"  (other-chars--insert "φ")
+  "x"  (other-chars--insert "χ")
+  "y"  (other-chars--insert "ψ")
+  "z"  (other-chars--insert "ω")
+  )
 ;;-- end greek
 
 ;;-- grave
 
-(define-key other-chars-grave-map "a"  (other-chars--insert "à"))
-
-(define-key other-chars-grave-map "e"  (other-chars--insert "è"))
-
-(define-key other-chars-grave-map "i"  (other-chars--insert "ì"))
-
-(define-key other-chars-grave-map "n"  (other-chars--insert "ǹ"))
-
-(define-key other-chars-grave-map "o"  (other-chars--insert "ò"))
-
-(define-key other-chars-grave-map "u"  (other-chars--insert "ù"))
-
-(define-key other-chars-grave-map "w"  (other-chars--insert "ẁ"))
-
-(define-key other-chars-grave-map "y"  (other-chars--insert "ỳ"))
+(evil-define-key nil other-chars-grave-map
+  "a"  (other-chars--insert "à")
+  "e"  (other-chars--insert "è")
+  "i"  (other-chars--insert "ì")
+  "n"  (other-chars--insert "ǹ")
+  "o"  (other-chars--insert "ò")
+  "u"  (other-chars--insert "ù")
+  "w"  (other-chars--insert "ẁ")
+  "y"  (other-chars--insert "ỳ")
+  )
 ;;-- end grave
 
 ;;-- logic
 
-(define-key other-chars-logic-map "a"  (other-chars--insert "∀"))
-
-(define-key other-chars-logic-map "E"  (other-chars--insert "∃"))
-
-(define-key other-chars-logic-map "N"  (other-chars--insert "∄"))
-
-(define-key other-chars-logic-map "e"  (other-chars--insert "∈"))
-
-(define-key other-chars-logic-map "n"  (other-chars--insert "¬"))
-
-(define-key other-chars-logic-map "d"  (other-chars--insert "∨"))
-
-(define-key other-chars-logic-map "c"  (other-chars--insert "∧"))
-
-(define-key other-chars-logic-map "<"  (other-chars--insert "⧼"))
-
-(define-key other-chars-logic-map ">"  (other-chars--insert "⧼"))
-
-(define-key other-chars-logic-map "i"  (other-chars--insert "⇒"))
-
-(define-key other-chars-logic-map "I"  (other-chars--insert "⇔"))
-
-(define-key other-chars-logic-map "t"  (other-chars--insert "⟙"))
-
-(define-key other-chars-logic-map "b"  (other-chars--insert "⟘"))
-
-(define-key other-chars-logic-map "\\" (other-chars--insert "⊨"))
-
-(define-key other-chars-logic-map "/"  (other-chars--insert "⊢"))
-
-(define-key other-chars-logic-map "T"  (other-chars--insert "∴"))
-
-(define-key other-chars-logic-map "["  (other-chars--insert "□"))
-
-(define-key other-chars-logic-map "]"  (other-chars--insert "◇"))
-
-(define-key other-chars-logic-map "o"  (other-chars--insert "⚬"))
+(evil-define-key nil other-chars-logic-map
+  "a"  (other-chars--insert "∀")
+  "E"  (other-chars--insert "∃")
+  "N"  (other-chars--insert "∄")
+  "e"  (other-chars--insert "∈")
+  "n"  (other-chars--insert "¬")
+  "d"  (other-chars--insert "∨")
+  "c"  (other-chars--insert "∧")
+  "<"  (other-chars--insert "⧼")
+  ">"  (other-chars--insert "⧼")
+  "i"  (other-chars--insert "⇒")
+  "I"  (other-chars--insert "⇔")
+  "t"  (other-chars--insert "⟙")
+  "b"  (other-chars--insert "⟘")
+  "\\" (other-chars--insert "⊨")
+  "/"  (other-chars--insert "⊢")
+  "T"  (other-chars--insert "∴")
+  "["  (other-chars--insert "□")
+  "]"  (other-chars--insert "◇")
+  "o"  (other-chars--insert "⚬")
+  )
 ;;-- end logic
 
 ;;-- math
 
-(define-key other-chars-math-map "s" (other-chars--insert "⊂"))
-
-(define-key other-chars-math-map "S" (other-chars--insert "⊃"))
-
-(define-key other-chars-math-map "e" (other-chars--insert "⊆"))
-
-(define-key other-chars-math-map "E" (other-chars--insert "⊇"))
-
-(define-key other-chars-math-map "n" (other-chars--insert "∅"))
-
-(define-key other-chars-math-map "i" (other-chars--insert "∩"))
-
-(define-key other-chars-math-map "u" (other-chars--insert "∪"))
-
-(define-key other-chars-math-map "q" (other-chars--insert "√"))
-
-(define-key other-chars-math-map "8" (other-chars--insert "∞"))
-
-(define-key other-chars-math-map "p"  (other-chars--insert "π"))
+(evil-define-key nil other-chars-math-map
+  "s" (other-chars--insert "⊂")
+  "S" (other-chars--insert "⊃")
+  "e" (other-chars--insert "⊆")
+  "E" (other-chars--insert "⊇")
+  "n" (other-chars--insert "∅")
+  "i" (other-chars--insert "∩")
+  "u" (other-chars--insert "∪")
+  "q" (other-chars--insert "√")
+  "8" (other-chars--insert "∞")
+  "p" (other-chars--insert "π")
+  )
 ;;-- end math
 
 ;;-- subscript
 
-(define-key other-chars-subscript-map "1" (other-chars--insert "₁"))
-
-(define-key other-chars-subscript-map "2" (other-chars--insert "₂"))
-
-(define-key other-chars-subscript-map "3" (other-chars--insert "₃"))
-
-(define-key other-chars-subscript-map "4" (other-chars--insert "₄"))
-
-(define-key other-chars-subscript-map "5" (other-chars--insert "₅"))
-
-(define-key other-chars-subscript-map "6" (other-chars--insert "₆"))
-
-(define-key other-chars-subscript-map "7" (other-chars--insert "₇"))
-
-(define-key other-chars-subscript-map "8" (other-chars--insert "₈"))
-
-(define-key other-chars-subscript-map "9" (other-chars--insert "₉"))
-
-(define-key other-chars-subscript-map "0" (other-chars--insert "₀"))
-
-(define-key other-chars-subscript-map "j" (other-chars--insert "ⱼ"))
-
-(define-key other-chars-subscript-map "i" (other-chars--insert "ᵢ"))
-
-(define-key other-chars-subscript-map "+" (other-chars--insert "₊"))
-
-(define-key other-chars-subscript-map "-" (other-chars--insert "₋"))
-
-(define-key other-chars-subscript-map "x" (other-chars--insert "ₓ"))
+(evil-define-key nil other-chars-subscript-map
+  "1" (other-chars--insert "₁")
+  "2" (other-chars--insert "₂")
+  "3" (other-chars--insert "₃")
+  "4" (other-chars--insert "₄")
+  "5" (other-chars--insert "₅")
+  "6" (other-chars--insert "₆")
+  "7" (other-chars--insert "₇")
+  "8" (other-chars--insert "₈")
+  "9" (other-chars--insert "₉")
+  "0" (other-chars--insert "₀")
+  "j" (other-chars--insert "ⱼ")
+  "i" (other-chars--insert "ᵢ")
+  "+" (other-chars--insert "₊")
+  "-" (other-chars--insert "₋")
+  "x" (other-chars--insert "ₓ")
+  )
 ;;-- end subscript
 
 ;;-- superscript
 
-(define-key other-chars-superscript-map "1" (other-chars--insert "¹"))
-
-(define-key other-chars-superscript-map "2" (other-chars--insert "²"))
-
-(define-key other-chars-superscript-map "3" (other-chars--insert "³"))
-
-(define-key other-chars-superscript-map "4" (other-chars--insert "⁴"))
-
-(define-key other-chars-superscript-map "5" (other-chars--insert "⁵"))
-
-(define-key other-chars-superscript-map "6" (other-chars--insert "⁶"))
-
-(define-key other-chars-superscript-map "7" (other-chars--insert "⁷"))
-
-(define-key other-chars-superscript-map "8" (other-chars--insert "⁸"))
-
-(define-key other-chars-superscript-map "9" (other-chars--insert "⁹"))
-
-(define-key other-chars-superscript-map "i" (other-chars--insert "ⁱ"))
-
-(define-key other-chars-superscript-map "n" (other-chars--insert "ⁿ"))
+(evil-define-key nil other-chars-superscript-map
+  "1" (other-chars--insert "¹")
+  "2" (other-chars--insert "²")
+  "3" (other-chars--insert "³")
+  "4" (other-chars--insert "⁴")
+  "5" (other-chars--insert "⁵")
+  "6" (other-chars--insert "⁶")
+  "7" (other-chars--insert "⁷")
+  "8" (other-chars--insert "⁸")
+  "9" (other-chars--insert "⁹")
+  "i" (other-chars--insert "ⁱ")
+  "n" (other-chars--insert "ⁿ")
+  )
 ;;-- end superscript
 
 ;;-- tilde
 
-(define-key other-chars-tilde-map  "a"  (other-chars--insert "ã"))
-
-(define-key other-chars-tilde-map  "e"  (other-chars--insert "ẽ"))
-
-(define-key other-chars-tilde-map  "i"  (other-chars--insert "ĩ"))
-
-(define-key other-chars-tilde-map  "n"  (other-chars--insert "ñ"))
-
-(define-key other-chars-tilde-map  "o"  (other-chars--insert "õ"))
-
-(define-key other-chars-tilde-map  "u"  (other-chars--insert "ũ"))
-
-(define-key other-chars-tilde-map  "v"  (other-chars--insert "ṽ"))
-
-(define-key other-chars-tilde-map  "y"  (other-chars--insert "ỹ"))
+(evil-define-key nil other-chars-tilde-map
+  "a"  (other-chars--insert "ã")
+  "e"  (other-chars--insert "ẽ")
+  "i"  (other-chars--insert "ĩ")
+  "n"  (other-chars--insert "ñ")
+  "o"  (other-chars--insert "õ")
+  "u"  (other-chars--insert "ũ")
+  "v"  (other-chars--insert "ṽ")
+  "y"  (other-chars--insert "ỹ")
+  )
 ;;-- end tilde
 
 ;;-- assemble
-(define-key other-chars-cx8-map         "'"               other-chars-acute-map)
 
-(define-key other-chars-cx8-map         ","               other-chars-cedilla-map)
-
-(define-key other-chars-cx8-map         "\""              other-chars-diaeresis-map)
-
-(define-key other-chars-cx8-map         "g"               other-chars-greek-map)
-
-(define-key other-chars-cx8-map         "`"               other-chars-grave-map)
-
-(define-key other-chars-cx8-map         "l"               other-chars-logic-map)
-
-(define-key other-chars-cx8-map         "M"               other-chars-math-map)
-
-(define-key other-chars-cx8-map         "/"               other-chars-subscript-map)
-
-(define-key other-chars-cx8-map         "\\"              other-chars-superscript-map)
-
-(define-key other-chars-cx8-map         "~"               other-chars-tilde-map)
-
-(define-key other-chars-cx8-map         "RET" #'insert-char)
-(when (fboundp 'general-insert-call)
-  (define-key other-chars-cx8-map         "DEL" #'general-insert-call)
+(evil-define-key  nil  other-chars-cx8-map
+  "'"               other-chars-acute-map
+  ","               other-chars-cedilla-map
+  "\""              other-chars-diaeresis-map
+  "g"               other-chars-greek-map
+  "`"               other-chars-grave-map
+  "l"               other-chars-logic-map
+  "m"               other-chars-math-map
+  "/"               other-chars-subscript-map
+  "\\"              other-chars-superscript-map
+  "~"               other-chars-tilde-map
+  "RET"             #'insert-char
   )
 
+(evil-define-key nil evil-other-chars-state-map
+  "'"               other-chars-acute-map
+  ","               other-chars-cedilla-map
+  "\""              other-chars-diaeresis-map
+  "g"               other-chars-greek-map
+  "`"               other-chars-grave-map
+  "l"               other-chars-logic-map
+  "m"               other-chars-math-map
+  "/"               other-chars-subscript-map
+  "\\"              other-chars-superscript-map
+  "~"               other-chars-tilde-map
+  "RET"             #'insert-char
+  "?"               #'other-chars-reminder
+  )
 
-(define-key evil-other-chars-state-map         "'"               other-chars-acute-map)
+(defun other-chars-reminder ()
+  (interactive)
+  (message "Char Groups:\n%s"
+           (string-join '("' : Acute"
+                          ", : Cedilla"
+                          "\" : Diaeresis"
+                          "` : Grave'"
+                          "~ : Tilde"
+                          "g : Greek Letters"
+                          "m : Math Symbols"
+                          "l : Logic Symbols"
+                          "/ : Subscripts"
+                          "\\ : Superscripts"
+                          "RET : Insert Interactively"
+                          )
+                        "\n"
+                        )
+           )
+  )
 
-(define-key evil-other-chars-state-map         ","               other-chars-cedilla-map)
-
-(define-key evil-other-chars-state-map         "\""              other-chars-diaeresis-map)
-
-(define-key evil-other-chars-state-map         "g"               other-chars-greek-map)
-
-(define-key evil-other-chars-state-map         "`"               other-chars-grave-map)
-
-(define-key evil-other-chars-state-map         "l"               other-chars-logic-map)
-
-(define-key evil-other-chars-state-map         "M"               other-chars-math-map)
-
-(define-key evil-other-chars-state-map         "/"               other-chars-subscript-map)
-
-(define-key evil-other-chars-state-map         "\\"              other-chars-superscript-map)
-
-(define-key evil-other-chars-state-map         "~"               other-chars-tilde-map)
-
-(define-key evil-other-chars-state-map         "RET" #'insert-char)
-(when (fboundp 'genera-insert-call)
-  (define-key evil-other-chars-state-map         "DEL" #'general-insert-call)
+(when (fboundp 'general-insert-call)
+  (define-key other-chars-cx8-map         "DEL" #'general-insert-call)
+  (define-key evil-other-chars-state-map  "DEL" #'general-insert-call)
   )
 
 ;;-- end assemble
-
 
 ;;;###autoload (autoload 'evil-other-chars-state (macroexp-file-name) nil t)
 (evil-define-state other-chars
@@ -417,6 +314,165 @@
   )
 
 ;; TODO transient
+
+;;-- descriptions
+(when (fboundp 'faster-whichkey-add-keymap-replacement)
+  (faster-whichkey-add-keymap-replacement nil other-chars-acute-map
+                                          "'" "´"
+                                          "a" "á"
+                                          "c" "ć"
+                                          "e" "é"
+                                          "g" "ǵ"
+                                          "i" "í"
+                                          "k" "ḱ"
+                                          "l" "ĺ"
+                                          "m" "ḿ"
+                                          "n" "ń"
+                                          "o" "ó"
+                                          "p" "ṕ"
+                                          "r" "ŕ"
+                                          "s" "ś"
+                                          "u" "ú"
+                                          "w" "ẃ"
+                                          "y" "ý"
+                                          "z" "ź"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-cedilla-map
+                                          "c" "ç"
+                                          "d" "ḑ"
+                                          "e" "ȩ"
+                                          "g" "ģ"
+                                          "h" "ḩ"
+                                          "k" "ķ"
+                                          "l" "ļ"
+                                          "n" "ņ"
+                                          "r" "ŗ"
+                                          "s" "ş"
+                                          "t" "ţ"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-diaeresis-map
+                                          "a" "ä"
+                                          "e" "ë"
+                                          "h" "ḧ"
+                                          "i" "ï"
+                                          "o" "ö"
+                                          "t" "ẗ"
+                                          "u" "ü"
+                                          "w" "ẅ"
+                                          "x" "ẍ"
+                                          "y" "ÿ"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-greek-map
+                                          "a" "α"
+                                          "b" "β"
+                                          "c" "γ"
+                                          "d" "δ"
+                                          "e" "ε"
+                                          "f" "ζ"
+                                          "g" "η"
+                                          "h" "θ"
+                                          "i" "ι"
+                                          "k" "κ"
+                                          "l" "λ"
+                                          "m" "μ"
+                                          "n" "ν"
+                                          "x" "ξ"
+                                          "o" "ο"
+                                          "p" "π"
+                                          "r" "ρ"
+                                          "s" "σ"
+                                          "t" "τ"
+                                          "u" "υ"
+                                          "v" "φ"
+                                          "x" "χ"
+                                          "y" "ψ"
+                                          "z" "ω"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-grave-map
+                                          "a" "à"
+                                          "e" "è"
+                                          "i" "ì"
+                                          "n" "ǹ"
+                                          "o" "ò"
+                                          "u" "ù"
+                                          "w" "ẁ"
+                                          "y" "ỳ"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-logic-map
+                                          "a" "∀"
+                                          "E" "∃"
+                                          "N" "∄"
+                                          "e" "∈"
+                                          "n" "¬"
+                                          "d" "∨"
+                                          "c" "∧"
+                                          "<" "⧼"
+                                          ">" "⧼"
+                                          "i" "⇒"
+                                          "I" "⇔"
+                                          "t" "⟙"
+                                          "b" "⟘"
+                                          "\\" "⊨"
+                                          "/" "⊢"
+                                          "T" "∴"
+                                          "[" "□"
+                                          "]" "◇"
+                                          "o" "⚬"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-math-map
+                                          "s" "⊂"
+                                          "S" "⊃"
+                                          "e" "⊆"
+                                          "E" "⊇"
+                                          "n" "∅"
+                                          "i" "∩"
+                                          "u" "∪"
+                                          "q" "√"
+                                          "8" "∞"
+                                          "p" "π"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-subscript-map
+                                          "1" "₁"
+                                          "2" "₂"
+                                          "3" "₃"
+                                          "4" "₄"
+                                          "5" "₅"
+                                          "6" "₆"
+                                          "7" "₇"
+                                          "8" "₈"
+                                          "9" "₉"
+                                          "0" "₀"
+                                          "j" "ⱼ"
+                                          "i" "ᵢ"
+                                          "+" "₊"
+                                          "-" "₋"
+                                          "x" "ₓ"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-superscript-map
+                                          "1" "¹"
+                                          "2" "²"
+                                          "3" "³"
+                                          "4" "⁴"
+                                          "5" "⁵"
+                                          "6" "⁶"
+                                          "7" "⁷"
+                                          "8" "⁸"
+                                          "9" "⁹"
+                                          "i" "ⁱ"
+                                          "n" "ⁿ"
+                                          )
+  (faster-whichkey-add-keymap-replacement nil other-chars-tilde-map
+                                          "a" "ã"
+                                          "e" "ẽ"
+                                          "i" "ĩ"
+                                          "n" "ñ"
+                                          "o" "õ"
+                                          "u" "ũ"
+                                          "v" "ṽ"
+                                          "y" "ỹ"
+                                          )
+  )
+;;-- end descriptions
 
 (provide 'other-chars-state)
 ;;; other-chars-state.el ends here
