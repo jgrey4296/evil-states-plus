@@ -27,7 +27,7 @@
 ;; (evil-global-set-key 'paren "x" #'sp-forward-parallel-sexp)
 ;; (evil-global-set-key 'paren "x" #'sp-forward-sexp)
 
-;;;###autoload (autoload 'evil-paren-state (macroexp-file-name) nil t)
+;;;###autoload (autoload 'evil-paren-state "evil-states-plus/paren-state" nil t)
 (evil-define-state paren
   "Paren State"
   :tag "<P>"

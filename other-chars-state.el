@@ -273,7 +273,7 @@
   "/"               other-chars-subscript-map
   "\\"              other-chars-superscript-map
   "~"               other-chars-tilde-map
-  "RET"             #'insert-char
+  (kbd "RET")             #'insert-char
   "?"               #'other-chars-reminder
   )
 

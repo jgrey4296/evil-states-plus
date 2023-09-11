@@ -36,6 +36,7 @@
   (insert insert-plus-sep)
   )
 
+
 (define-key evil-insert-plus-state-map [escape] #'evil-normal-state)
 (define-key evil-insert-plus-state-map (kbd "SPC") #'insert-plus-insert-sep)
 (define-key evil-insert-plus-state-map "§"   #'insert-plus-set-sep)
