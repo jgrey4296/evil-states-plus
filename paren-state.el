@@ -3,29 +3,31 @@
 (require 'evil-core)
 (require 'smartparens)
 
-
-;; (evil-add-hjkl-bindings global-map 'paren)
+(defvar paren-state-overlay (make-overlay (point-min) (point-min)))
+(defvar evil-paren-state-map (make-keymap))
 (suppress-keymap evil-paren-state-map)
-(evil-global-set-key 'paren "H" #'sp-beginning-of-sexp)
-(evil-global-set-key 'paren "h" #'sp-backward-up-sexp)
-(evil-global-set-key 'paren "l" #'sp-down-sexp)
-(evil-global-set-key 'paren "L" #'sp-end-of-sexp)
-(evil-global-set-key 'paren "k" #'sp-backward-sexp)
-(evil-global-set-key 'paren "K" #'sp-up-sexp)
-(evil-global-set-key 'paren "j" #'sp-next-sexp)
 
-(evil-global-set-key 'paren "p" #'sp-beginning-of-next-sexp)
-(evil-global-set-key 'paren "u" #'sp-beginning-of-previous-sexp)
-(evil-global-set-key 'paren "o" #'sp-end-of-next-sexp)
-(evil-global-set-key 'paren "i" #'sp-end-of-previous-sexp)
-(evil-global-set-key 'paren "q" #'evil-normal-state)
+(evil-define-key nil evil-paren-state-map
+  "H" #'sp-beginning-of-sexp
+  "h" #'sp-backward-up-sexp
+  "l" #'sp-down-sexp
+  "L" #'sp-end-of-sexp
+  "k" #'sp-backward-sexp
+  "K" #'sp-up-sexp
+  "j" #'sp-next-sexp
+  "p" #'sp-beginning-of-next-sexp
+  "u" #'sp-beginning-of-previous-sexp
+  "o" #'sp-end-of-next-sexp
+  "i" #'sp-end-of-previous-sexp
+  "q" #'evil-normal-state
+  )
 
-;; (evil-global-set-key 'paren "a" #'sp-previous-sexp)
-;; (evil-global-set-key 'paren "f" #'sp-next-sexp)
-;; (evil-global-set-key 'paren "x" #'sp-backward-parallel-sexp)
-;; (evil-global-set-key 'paren "x" #'sp-backward-sexp)
-;; (evil-global-set-key 'paren "x" #'sp-forward-parallel-sexp)
-;; (evil-global-set-key 'paren "x" #'sp-forward-sexp)
+;; (evil-define-key 'paren "a" #'sp-previous-sexp)
+;; (evil-define-key 'paren "f" #'sp-next-sexp)
+;; (evil-define-key 'paren "x" #'sp-backward-parallel-sexp)
+;; (evil-define-key 'paren "x" #'sp-backward-sexp)
+;; (evil-define-key 'paren "x" #'sp-forward-parallel-sexp)
+;; (evil-define-key 'paren "x" #'sp-forward-sexp)
 
 ;;;###autoload (autoload 'evil-paren-state "evil-states-plus/paren-state" nil t)
 (evil-define-state paren
