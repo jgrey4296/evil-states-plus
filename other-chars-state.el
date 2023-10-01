@@ -53,6 +53,8 @@
 
 (defvar other-chars-tilde-map        (make-sparse-keymap))
 
+(defvar other-chars-caron-map        (make-sparse-keymap))
+
 ;;-- acute
 
 (evil-define-key nil other-chars-acute-map
@@ -246,6 +248,29 @@
   )
 ;;-- end tilde
 
+;;-- caron
+(evil-define-key nil other-chars-caron-map
+  "a"  (other-chars--insert "ǎ")
+  "c"  (other-chars--insert "č")
+  "d"  (other-chars--insert "ď")
+  "e"  (other-chars--insert "ě")
+  "g"  (other-chars--insert "ǧ")
+  "h"  (other-chars--insert "ȟ")
+  "i"  (other-chars--insert "ǐ")
+  "j"  (other-chars--insert "ǰ")
+  "k"  (other-chars--insert "ǩ")
+  "l"  (other-chars--insert "ľ")
+  "n"  (other-chars--insert "ň")
+  "o"  (other-chars--insert "ǒ")
+  "r"  (other-chars--insert "ř")
+  "s"  (other-chars--insert "š")
+  "t"  (other-chars--insert "ť")
+  "u"  (other-chars--insert "ǔ")
+  "z"  (other-chars--insert "ž")
+  )
+
+;;-- end caron
+
 ;;-- assemble
 
 (evil-define-key  nil  other-chars-cx8-map
@@ -259,6 +284,7 @@
   "/"               other-chars-subscript-map
   "\\"              other-chars-superscript-map
   "~"               other-chars-tilde-map
+  "^"               other-chars-caron-map
   "RET"             #'insert-char
   )
 
@@ -273,6 +299,7 @@
   "/"               other-chars-subscript-map
   "\\"              other-chars-superscript-map
   "~"               other-chars-tilde-map
+  "^"               other-chars-caron-map
   (kbd "RET")             #'insert-char
   "?"               #'other-chars-reminder
   )
@@ -280,16 +307,17 @@
 (defun other-chars-reminder ()
   (interactive)
   (message "Char Groups:\n%s"
-           (string-join '("' : Acute"
-                          ", : Cedilla"
-                          "\" : Diaeresis"
-                          "` : Grave'"
-                          "~ : Tilde"
-                          "g : Greek Letters"
-                          "m : Math Symbols"
-                          "l : Logic Symbols"
-                          "/ : Subscripts"
-                          "\\ : Superscripts"
+           (string-join '("'   : Acute"
+                          ",   : Cedilla"
+                          "\"  : Diaeresis"
+                          "`   : Grave'"
+                          "~   : Tilde"
+                          "g   : Greek Letters"
+                          "m   : Math Symbols"
+                          "l   : Logic Symbols"
+                          "/   : Subscripts"
+                          "\\  : Superscripts"
+                          "^   : Carons"
                           "RET : Insert Interactively"
                           )
                         "\n"
@@ -471,7 +499,27 @@
                                           "v" "ṽ"
                                           "y" "ỹ"
                                           )
-  )
+
+(faster-whichkey-add-keymap-replacement nil other-chars-caron-map
+                                        "a"  "ǎ"
+                                        "c"  "č"
+                                        "d"  "ď"
+                                        "e"  "ě"
+                                        "g"  "ǧ"
+                                        "h"  "ȟ"
+                                        "i"  "ǐ"
+                                        "j"  "ǰ"
+                                        "k"  "ǩ"
+                                        "l"  "ľ"
+                                        "n"  "ň"
+                                        "o"  "ǒ"
+                                        "r"  "ř"
+                                        "s"  "š"
+                                        "t"  "ť"
+                                        "u"  "ǔ"
+                                        "z"  "ž"
+                                        )
+)
 ;;-- end descriptions
 
 (provide 'other-chars-state)
