@@ -300,6 +300,7 @@
   "\\"              other-chars-superscript-map
   "~"               other-chars-tilde-map
   "^"               other-chars-caron-map
+  "-"               (other-chars--insert "—")
   (kbd "RET")             #'insert-char
   "?"               #'other-chars-reminder
   )
