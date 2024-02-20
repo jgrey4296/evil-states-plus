@@ -301,6 +301,7 @@
   "~"               other-chars-tilde-map
   "^"               other-chars-caron-map
   "-"               (other-chars--insert "—")
+  "b"               (other-chars--insert "ß")
   (kbd "RET")             #'insert-char
   "?"               #'other-chars-reminder
   )
@@ -319,6 +320,7 @@
                           "/   : Subscripts"
                           "\\  : Superscripts"
                           "^   : Carons"
+                          "B   : ß"
                           "RET : Insert Interactively"
                           )
                         "\n"
