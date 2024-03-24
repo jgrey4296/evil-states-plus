@@ -55,6 +55,8 @@
 
 (defvar other-chars-caron-map        (make-sparse-keymap))
 
+(defvar other-chars-stroke-map       (make-sparse-keymap))
+
 ;;-- acute
 
 (evil-define-key nil other-chars-acute-map
@@ -274,18 +276,19 @@
 ;;-- assemble
 
 (evil-define-key  nil  other-chars-cx8-map
-  "'"               other-chars-acute-map
-  ","               other-chars-cedilla-map
-  "\""              other-chars-diaeresis-map
-  "g"               other-chars-greek-map
-  "`"               other-chars-grave-map
-  "l"               other-chars-logic-map
-  "m"               other-chars-math-map
-  "/"               other-chars-subscript-map
-  "\\"              other-chars-superscript-map
-  "~"               other-chars-tilde-map
-  "^"               other-chars-caron-map
-  "RET"             #'insert-char
+  "'"                  other-chars-acute-map
+  ","                  other-chars-cedilla-map
+  "\""                 other-chars-diaeresis-map
+  "g"                  other-chars-greek-map
+  "`"                  other-chars-grave-map
+  "l"                  other-chars-logic-map
+  "m"                  other-chars-math-map
+  "/"                  other-chars-subscript-map
+  "\\"                 other-chars-superscript-map
+  "~"                  other-chars-tilde-map
+  "^"                  other-chars-caron-map
+  "s"                  other-chars-stroke-map
+  "RET"                #'insert-char
   )
 
 (evil-define-key nil evil-other-chars-state-map
@@ -302,7 +305,8 @@
   "^"               other-chars-caron-map
   "-"               (other-chars--insert "—")
   "b"               (other-chars--insert "ß")
-  (kbd "RET")             #'insert-char
+  "s"               (other-chars-stroke-map)
+  (kbd "RET")        #'insert-char
   "?"               #'other-chars-reminder
   )
 
