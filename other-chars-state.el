@@ -320,7 +320,7 @@
                           "/   : Subscripts"
                           "\\  : Superscripts"
                           "^   : Carons"
-                          "B   : ß"
+                          "b   : ß (Sharp S)"
                           "RET : Insert Interactively"
                           )
                         "\n"
