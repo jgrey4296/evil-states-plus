@@ -305,8 +305,8 @@
   "^"               other-chars-caron-map
   "-"               (other-chars--insert "—")
   "b"               (other-chars--insert "ß")
-  "s"               (other-chars-stroke-map)
-  (kbd "RET")        #'insert-char
+  "s"               other-chars-stroke-map
+  (kbd "RET")       #'insert-char
   "?"               #'other-chars-reminder
   )
 
