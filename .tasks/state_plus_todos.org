@@ -1,0 +1,16 @@
+#+title: Evil States Plus Todos
+* Evil States Plus
+:PROPERTIES:
+:ID:       ae25f6c1-6143-4350-8f2e-afaece7ea930
+:END:
+** cmd: ivy-state
+** bidirectional state
+** page move / browse state
+** forward state
+** backward state
+** search state
+** vis control state
+** conflict-merge
+** insert-plus
+** other-chars
+** paren
