@@ -1,16 +1,21 @@
 #+title: Evil States Plus Todos
+#+STARTUP: agenda
+
 * Evil States Plus
 :PROPERTIES:
 :ID:       ae25f6c1-6143-4350-8f2e-afaece7ea930
 :END:
-** cmd: ivy-state
-** bidirectional state
-** page move / browse state
-** forward state
-** backward state
-** search state
-** vis control state
-** conflict-merge
-** insert-plus
-** other-chars
-** paren
+** [∅] cmd: ivy-state
+** [∅] bidirectional state
+** [∅] page move / browse state
+** [∅] forward state
+** [∅] backward state
+** [∅] search state
+** [∅] vis control state
+** [⟙] conflict-merge
+- State "[⟙]"        from "[∅]"        [2024-06-03 Mon 05:16]
+** [⟙] insert-plus
+- State "[⟙]"        from "[∅]"        [2024-06-03 Mon 05:16]
+** [⟙] other-chars
+- State "[⟙]"        from "[∅]"        [2024-06-03 Mon 05:16]
+** [∅] paren
