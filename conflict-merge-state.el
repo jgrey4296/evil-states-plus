@@ -13,11 +13,11 @@
     :suppress-keymap t
     )
 
-(define-key evil-conflict-merge-state-map  "j"    #'smerge-next)
-(define-key evil-conflict-merge-state-map  "k"    #'smerge-prev)
-(define-key evil-conflict-merge-state-map  "U"    #'smerge-keep-upper)
-(define-key evil-conflict-merge-state-map  "L"    #'smerge-keep-lower)
-(define-key evil-conflict-merge-state-map  "RET"  #'smerge-keep-current)
+(keymap-set evil-conflict-merge-state-map  "j"    #'smerge-next)
+(keymap-set evil-conflict-merge-state-map  "k"    #'smerge-prev)
+(keymap-set evil-conflict-merge-state-map  "U"    #'smerge-keep-upper)
+(keymap-set evil-conflict-merge-state-map  "L"    #'smerge-keep-lower)
+(keymap-set evil-conflict-merge-state-map  "RET"  #'smerge-keep-current)
 
 
 (provide 'conflict-merge-state)

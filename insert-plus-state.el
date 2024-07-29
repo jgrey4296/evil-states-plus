@@ -21,10 +21,10 @@
 (require 'evil-core)
 
 (defvar insert-plus-sep "_")
+
 (defvar evil-insert-plus-state-map
   (make-sparse-keymap)
   "Keymap for Insert State with spaces remapped.")
-
 
 (defun insert-plus-set-sep (str)
   (interactive (list (read-string (format "Separator: ('%s') " insert-plus-sep))))
@@ -36,22 +36,22 @@
   (insert insert-plus-sep)
   )
 
+(keymap-set evil-insert-plus-state-map "ESC" #'evil-normal-state)
 
-(define-key evil-insert-plus-state-map [escape] #'evil-normal-state)
-(define-key evil-insert-plus-state-map (kbd "SPC") #'insert-plus-insert-sep)
-(define-key evil-insert-plus-state-map "§"   #'insert-plus-set-sep)
-(define-key evil-insert-plus-state-map (kbd "TAB") #'evil-insert-state)
-;; TODO map a control to choose the SPC replacement
+(keymap-set evil-insert-plus-state-map "SPC" #'insert-plus-insert-sep)
 
+(keymap-set evil-insert-plus-state-map "§"   #'insert-plus-set-sep)
+
+(keymap-set evil-insert-plus-state-map "TAB" #'evil-insert-state)
 
 (when (fboundp #'evil-escape--get-appropriate-func)
-  (defun insert-plus-escape-advice (&rest r)
+  (defun insert-plus-escape-a (&rest r)
     " extends evil-escape for this new state "
     (when (evil-insert-plus-state-p)
       #'evil-normal-state)
     )
 
-  (advice-add 'evil--get-appropriate-func :before-until #'insert-plus-escape-advice)
+  (advice-add 'evil-escape--get-appropriate-func :before-until #'insert-plus-escape-a)
   )
 
 ;;;###autoload (autoload 'evil-insert-plus-state (macroexp-file-name) nil t)
