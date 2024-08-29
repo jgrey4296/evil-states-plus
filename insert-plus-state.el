@@ -61,7 +61,7 @@
   :message "-- Insert+ --"
   :suppress-keymap nil
   :entry-hook (evil-start-track-last-insertion)
-  :exit-hook  (evil-stop-track-last-insertion)
+  :exit-hook  (evil-cleanup-insert-state evil-stop-track-last-insertion)
   :input-method nil
   )
 
