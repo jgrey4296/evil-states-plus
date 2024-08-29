@@ -25,6 +25,7 @@
 (defvar evil-insert-plus-state-map
   (make-sparse-keymap)
   "Keymap for Insert State with spaces remapped.")
+(defvar evil-insert-plus-escape-to 'evil-insert-state)
 
 (defun insert-plus-set-sep (str)
   (interactive (list (read-string (format "Separator: ('%s') " insert-plus-sep))))
@@ -44,15 +45,13 @@
 
 (keymap-set evil-insert-plus-state-map "TAB" #'evil-insert-state)
 
-(when (fboundp #'evil-escape--get-appropriate-func)
-  (defun insert-plus-escape-a (&rest r)
-    " extends evil-escape for this new state "
-    (when (evil-insert-plus-state-p)
-      #'evil-normal-state)
-    )
-
-  (advice-add 'evil-escape--get-appropriate-func :before-until #'insert-plus-escape-a)
+(defun insert-plus-escape-a (&rest r)
+  " extends evil-escape for this new state "
+  (when (evil-insert-plus-state-p)
+    #'evil-normal-state)
   )
+
+(advice-add 'evil-escape--get-appropriate-func :before-until #'insert-plus-escape-a)
 
 ;;;###autoload (autoload 'evil-insert-plus-state (macroexp-file-name) nil t)
 (evil-define-state insert-plus
