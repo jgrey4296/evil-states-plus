@@ -23,7 +23,8 @@
 ;;-- end header
 
 (require 'paren-state)
-(require 'insert-plus-state)
+(require 'mapspace-state)
+(require 'spechar-state)
 (require 'conflict-merge-state)
 
 (provide 'evil-states-plus)
