@@ -199,6 +199,7 @@ ie: allowing a 'window move state' that follows the cursor
 ;;-- bindings
 (evil-define-key* '-quitter 'global
   (kbd "SPC")   'doom/leader
+  (kbd "DEL")    #'ignore
   "q"            #'evil-normal-state
   "1"            #'digit-argument
   "2"            #'digit-argument

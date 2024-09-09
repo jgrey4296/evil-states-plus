@@ -45,6 +45,8 @@
 
 (keymap-set evil-insert-plus-state-map "TAB" #'evil-insert-state)
 
+(keymap-set evil-insert-plus-state-map "DEL" #'backward-delete-char)
+
 (defun insert-plus-escape-a (&rest r)
   " extends evil-escape for this new state "
   (when (evil-insert-plus-state-p)

@@ -1,4 +1,4 @@
-;;; other-chars-state.el -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; spechar-state.el -*- lexical-binding: t; no-byte-compile: t; -*-
 ;;-- header
 ;;
 ;; Copyright (C) 2023 John Grey
@@ -22,295 +22,329 @@
 ;;; Code:
 ;;-- end header
 (require 'evil-core)
+(require 'counsel)
 
-(defvar evil-other-chars-state-map (make-keymap))
-(suppress-keymap evil-other-chars-state-map)
+(defvar evil-spechar-state-map (make-keymap))
+(suppress-keymap evil-spechar-state-map)
 
-(defmacro other-chars--insert (char)
+(defun spechar--prefixed-unicode-char (prefix)
+  " Start a counsel to insert a unicode char, with a provided selection prefix "
+  (setq ivy-completion-beg (point)
+        ivy-completion-end (point))
+  (ivy-read "Unicode name: " counsel--unicode-table
+            :initial-input prefix
+            :history 'counsel-unicode-char-history
+            :action (lambda (name)
+                      (with-ivy-window
+                        (delete-region ivy-completion-beg ivy-completion-end)
+                        (setq ivy-completion-beg (point))
+                        (insert-char (get-text-property 0 'code name) count)
+                        (setq ivy-completion-end (point))))
+            :caller 'counsel-unicode-char)
+  )
+
+
+(defmacro spechar--prep-counsel (prefix)
+  `(lambda ()
+     (interactive)
+     (spechar--prefix-unicode-char ,prefix)))
+
+(defmacro spechar--insert (char)
   `(lambda ()
      (interactive)
      (insert ,char)))
 
-(defvar other-chars-cx8-map          (make-sparse-keymap))
-
-(defvar other-chars-acute-map        (make-sparse-keymap))
-
-(defvar other-chars-cedilla-map      (make-sparse-keymap))
-
-(defvar other-chars-diaeresis-map    (make-sparse-keymap))
-
-(defvar other-chars-greek-map        (make-sparse-keymap))
-
-(defvar other-chars-grave-map        (make-sparse-keymap))
-
-(defvar other-chars-logic-map        (make-sparse-keymap))
-
-(defvar other-chars-math-map         (make-sparse-keymap))
-
-(defvar other-chars-subscript-map    (make-sparse-keymap))
-
-(defvar other-chars-superscript-map  (make-sparse-keymap))
-
-(defvar other-chars-tilde-map        (make-sparse-keymap))
-
-(defvar other-chars-caron-map        (make-sparse-keymap))
-
-(defvar other-chars-stroke-map       (make-sparse-keymap))
 
 ;;-- acute
 
-(evil-define-key nil other-chars-acute-map
-  "'" (other-chars--insert "´")
-  "a" (other-chars--insert "á")
-  "c" (other-chars--insert "ć")
-  "e" (other-chars--insert "é")
-  "g" (other-chars--insert "ǵ")
-  "i" (other-chars--insert "í")
-  "k" (other-chars--insert "ḱ")
-  "l" (other-chars--insert "ĺ")
-  "m" (other-chars--insert "ḿ")
-  "n" (other-chars--insert "ń")
-  "o" (other-chars--insert "ó")
-  "p" (other-chars--insert "ṕ")
-  "r" (other-chars--insert "ŕ")
-  "s" (other-chars--insert "ś")
-  "u" (other-chars--insert "ú")
-  "w" (other-chars--insert "ẃ")
-  "y" (other-chars--insert "ý")
-  "z" (other-chars--insert "ź")
+(evil-define-key 'spechar 'global
+  "''" (spechar--insert "´")
+  "'a" (spechar--insert "á")
+  "'c" (spechar--insert "ć")
+  "'e" (spechar--insert "é")
+  "'g" (spechar--insert "ǵ")
+  "'i" (spechar--insert "í")
+  "'k" (spechar--insert "ḱ")
+  "'l" (spechar--insert "ĺ")
+  "'m" (spechar--insert "ḿ")
+  "'n" (spechar--insert "ń")
+  "'o" (spechar--insert "ó")
+  "'p" (spechar--insert "ṕ")
+  "'r" (spechar--insert "ŕ")
+  "'s" (spechar--insert "ś")
+  "'u" (spechar--insert "ú")
+  "'w" (spechar--insert "ẃ")
+  "'y" (spechar--insert "ý")
+  "'z" (spechar--insert "ź")
   )
 ;;-- end acute
 
 ;;-- cedilla
-
-(evil-define-key nil other-chars-cedilla-map
-  "c"  (other-chars--insert "ç")
-  "d"  (other-chars--insert "ḑ")
-  "e"  (other-chars--insert "ȩ")
-  "g"  (other-chars--insert "ģ")
-  "h"  (other-chars--insert "ḩ")
-  "k"  (other-chars--insert "ķ")
-  "l"  (other-chars--insert "ļ")
-  "n"  (other-chars--insert "ņ")
-  "r"  (other-chars--insert "ŗ")
-  "s"  (other-chars--insert "ş")
-  "t"  (other-chars--insert "ţ")
+(evil-define-key 'spechar 'global
+  ",c"  (spechar--insert "ç")
+  ",d"  (spechar--insert "ḑ")
+  ",e"  (spechar--insert "ȩ")
+  ",g"  (spechar--insert "ģ")
+  ",h"  (spechar--insert "ḩ")
+  ",k"  (spechar--insert "ķ")
+  ",l"  (spechar--insert "ļ")
+  ",n"  (spechar--insert "ņ")
+  ",r"  (spechar--insert "ŗ")
+  ",s"  (spechar--insert "ş")
+  ",t"  (spechar--insert "ţ")
   )
 ;;-- end cedilla
 
 ;;-- diaresis
-(evil-define-key nil other-chars-diaeresis-map
-  "a"  (other-chars--insert "ä")
-  "e"  (other-chars--insert "ë")
-  "h"  (other-chars--insert "ḧ")
-  "i"  (other-chars--insert "ï")
-  "o"  (other-chars--insert "ö")
-  "t"  (other-chars--insert "ẗ")
-  "u"  (other-chars--insert "ü")
-  "w"  (other-chars--insert "ẅ")
-  "x"  (other-chars--insert "ẍ")
-  "y"  (other-chars--insert "ÿ")
+(evil-define-key 'spechar 'global
+  "\"a"  (spechar--insert "ä")
+  "\"e"  (spechar--insert "ë")
+  "\"h"  (spechar--insert "ḧ")
+  "\"i"  (spechar--insert "ï")
+  "\"o"  (spechar--insert "ö")
+  "\"t"  (spechar--insert "ẗ")
+  "\"u"  (spechar--insert "ü")
+  "\"w"  (spechar--insert "ẅ")
+  "\"x"  (spechar--insert "ẍ")
+  "\"y"  (spechar--insert "ÿ")
   )
 ;;-- end diaresis
 
 ;;-- greek
-
-(evil-define-key nil other-chars-greek-map
-  "a"  (other-chars--insert "α")
-  "b"  (other-chars--insert "β")
-  "c"  (other-chars--insert "γ")
-  "d"  (other-chars--insert "δ")
-  "e"  (other-chars--insert "ε")
-  "f"  (other-chars--insert "ζ")
-  "g"  (other-chars--insert "η")
-  "h"  (other-chars--insert "θ")
-  "i"  (other-chars--insert "ι")
-  "k"  (other-chars--insert "κ")
-  "l"  (other-chars--insert "λ")
-  "m"  (other-chars--insert "μ")
-  "n"  (other-chars--insert "ν")
-  "x"  (other-chars--insert "ξ")
-  "o"  (other-chars--insert "ο")
-  "p"  (other-chars--insert "π")
-  "r"  (other-chars--insert "ρ")
-  "s"  (other-chars--insert "σ")
-  "t"  (other-chars--insert "τ")
-  "u"  (other-chars--insert "υ")
-  "v"  (other-chars--insert "φ")
-  "x"  (other-chars--insert "χ")
-  "y"  (other-chars--insert "ψ")
-  "z"  (other-chars--insert "ω")
+(evil-define-key 'spechar 'global
+  "ga"  (spechar--insert "α")
+  "gb"  (spechar--insert "β")
+  "gc"  (spechar--insert "γ")
+  "gd"  (spechar--insert "δ")
+  "ge"  (spechar--insert "ε")
+  "gf"  (spechar--insert "ζ")
+  "gg"  (spechar--insert "η")
+  "gh"  (spechar--insert "θ")
+  "gi"  (spechar--insert "ι")
+  "gk"  (spechar--insert "κ")
+  "gl"  (spechar--insert "λ")
+  "gm"  (spechar--insert "μ")
+  "gn"  (spechar--insert "ν")
+  "gx"  (spechar--insert "ξ")
+  "go"  (spechar--insert "ο")
+  "gp"  (spechar--insert "π")
+  "gr"  (spechar--insert "ρ")
+  "gs"  (spechar--insert "σ")
+  "gt"  (spechar--insert "τ")
+  "gu"  (spechar--insert "υ")
+  "gv"  (spechar--insert "φ")
+  "gx"  (spechar--insert "χ")
+  "gy"  (spechar--insert "ψ")
+  "gz"  (spechar--insert "ω")
   )
 ;;-- end greek
 
 ;;-- grave
-
-(evil-define-key nil other-chars-grave-map
-  "a"  (other-chars--insert "à")
-  "e"  (other-chars--insert "è")
-  "i"  (other-chars--insert "ì")
-  "n"  (other-chars--insert "ǹ")
-  "o"  (other-chars--insert "ò")
-  "u"  (other-chars--insert "ù")
-  "w"  (other-chars--insert "ẁ")
-  "y"  (other-chars--insert "ỳ")
+(evil-define-key 'spechar 'global
+  "`a"  (spechar--insert "à")
+  "`e"  (spechar--insert "è")
+  "`i"  (spechar--insert "ì")
+  "`n"  (spechar--insert "ǹ")
+  "`o"  (spechar--insert "ò")
+  "`u"  (spechar--insert "ù")
+  "`w"  (spechar--insert "ẁ")
+  "`y"  (spechar--insert "ỳ")
   )
 ;;-- end grave
 
 ;;-- logic
-
-(evil-define-key nil other-chars-logic-map
-  "a"  (other-chars--insert "∀")
-  "E"  (other-chars--insert "∃")
-  "N"  (other-chars--insert "∄")
-  "e"  (other-chars--insert "∈")
-  "n"  (other-chars--insert "¬")
-  "d"  (other-chars--insert "∨")
-  "c"  (other-chars--insert "∧")
-  "<"  (other-chars--insert "⧼")
-  ">"  (other-chars--insert "⧼")
-  "i"  (other-chars--insert "⇒")
-  "I"  (other-chars--insert "⇔")
-  "t"  (other-chars--insert "⟙")
-  "b"  (other-chars--insert "⟘")
-  "\\" (other-chars--insert "⊨")
-  "/"  (other-chars--insert "⊢")
-  "T"  (other-chars--insert "∴")
-  "["  (other-chars--insert "□")
-  "]"  (other-chars--insert "◇")
-  "o"  (other-chars--insert "⚬")
+(evil-define-key 'spechar 'global
+  "la"  (spechar--insert "∀")
+  "lE"  (spechar--insert "∃")
+  "lN"  (spechar--insert "∄")
+  "le"  (spechar--insert "∈")
+  "ln"  (spechar--insert "¬")
+  "ld"  (spechar--insert "∨")
+  "lc"  (spechar--insert "∧")
+  "l<"  (spechar--insert "⧼")
+  "l>"  (spechar--insert "⧼")
+  "li"  (spechar--insert "⇒")
+  "lI"  (spechar--insert "⇔")
+  "lt"  (spechar--insert "⟙")
+  "lb"  (spechar--insert "⟘")
+  "l\\" (spechar--insert "⊨")
+  "l/"  (spechar--insert "⊢")
+  "lT"  (spechar--insert "∴")
+  "l["  (spechar--insert "□")
+  "l]"  (spechar--insert "◇")
+  "lo"  (spechar--insert "⚬")
   )
 ;;-- end logic
 
 ;;-- math
-
-(evil-define-key nil other-chars-math-map
-  "s" (other-chars--insert "⊂")
-  "S" (other-chars--insert "⊃")
-  "e" (other-chars--insert "⊆")
-  "E" (other-chars--insert "⊇")
-  "n" (other-chars--insert "∅")
-  "i" (other-chars--insert "∩")
-  "u" (other-chars--insert "∪")
-  "q" (other-chars--insert "√")
-  "8" (other-chars--insert "∞")
-  "p" (other-chars--insert "π")
+(evil-define-key 'spechar 'global
+  "ms" (spechar--insert "⊂")
+  "mS" (spechar--insert "⊃")
+  "me" (spechar--insert "⊆")
+  "mE" (spechar--insert "⊇")
+  "mn" (spechar--insert "∅")
+  "mi" (spechar--insert "∩")
+  "mu" (spechar--insert "∪")
+  "mq" (spechar--insert "√")
+  "m8" (spechar--insert "∞")
+  "mp" (spechar--insert "π")
   )
 ;;-- end math
 
 ;;-- subscript
-
-(evil-define-key nil other-chars-subscript-map
-  "1" (other-chars--insert "₁")
-  "2" (other-chars--insert "₂")
-  "3" (other-chars--insert "₃")
-  "4" (other-chars--insert "₄")
-  "5" (other-chars--insert "₅")
-  "6" (other-chars--insert "₆")
-  "7" (other-chars--insert "₇")
-  "8" (other-chars--insert "₈")
-  "9" (other-chars--insert "₉")
-  "0" (other-chars--insert "₀")
-  "j" (other-chars--insert "ⱼ")
-  "i" (other-chars--insert "ᵢ")
-  "+" (other-chars--insert "₊")
-  "-" (other-chars--insert "₋")
-  "x" (other-chars--insert "ₓ")
+(evil-define-key 'spechar 'global
+  "/1" (spechar--insert "₁")
+  "/2" (spechar--insert "₂")
+  "/3" (spechar--insert "₃")
+  "/4" (spechar--insert "₄")
+  "/5" (spechar--insert "₅")
+  "/6" (spechar--insert "₆")
+  "/7" (spechar--insert "₇")
+  "/8" (spechar--insert "₈")
+  "/9" (spechar--insert "₉")
+  "/0" (spechar--insert "₀")
+  "/j" (spechar--insert "ⱼ")
+  "/i" (spechar--insert "ᵢ")
+  "/+" (spechar--insert "₊")
+  "/-" (spechar--insert "₋")
+  "/x" (spechar--insert "ₓ")
   )
 ;;-- end subscript
 
 ;;-- superscript
-
-(evil-define-key nil other-chars-superscript-map
-  "1" (other-chars--insert "¹")
-  "2" (other-chars--insert "²")
-  "3" (other-chars--insert "³")
-  "4" (other-chars--insert "⁴")
-  "5" (other-chars--insert "⁵")
-  "6" (other-chars--insert "⁶")
-  "7" (other-chars--insert "⁷")
-  "8" (other-chars--insert "⁸")
-  "9" (other-chars--insert "⁹")
-  "i" (other-chars--insert "ⁱ")
-  "n" (other-chars--insert "ⁿ")
+(evil-define-key 'spechar 'global
+  "\1" (spechar--insert "¹")
+  "\2" (spechar--insert "²")
+  "\3" (spechar--insert "³")
+  "\4" (spechar--insert "⁴")
+  "\5" (spechar--insert "⁵")
+  "\6" (spechar--insert "⁶")
+  "\7" (spechar--insert "⁷")
+  "\8" (spechar--insert "⁸")
+  "\9" (spechar--insert "⁹")
+  "\i" (spechar--insert "ⁱ")
+  "\n" (spechar--insert "ⁿ")
   )
 ;;-- end superscript
 
 ;;-- tilde
-
-(evil-define-key nil other-chars-tilde-map
-  "a"  (other-chars--insert "ã")
-  "e"  (other-chars--insert "ẽ")
-  "i"  (other-chars--insert "ĩ")
-  "n"  (other-chars--insert "ñ")
-  "o"  (other-chars--insert "õ")
-  "u"  (other-chars--insert "ũ")
-  "v"  (other-chars--insert "ṽ")
-  "y"  (other-chars--insert "ỹ")
+(evil-define-key 'spechar 'global
+  "~a"  (spechar--insert "ã")
+  "~e"  (spechar--insert "ẽ")
+  "~i"  (spechar--insert "ĩ")
+  "~n"  (spechar--insert "ñ")
+  "~o"  (spechar--insert "õ")
+  "~u"  (spechar--insert "ũ")
+  "~v"  (spechar--insert "ṽ")
+  "~y"  (spechar--insert "ỹ")
   )
 ;;-- end tilde
 
 ;;-- caron
-(evil-define-key nil other-chars-caron-map
-  "a"  (other-chars--insert "ǎ")
-  "c"  (other-chars--insert "č")
-  "d"  (other-chars--insert "ď")
-  "e"  (other-chars--insert "ě")
-  "g"  (other-chars--insert "ǧ")
-  "h"  (other-chars--insert "ȟ")
-  "i"  (other-chars--insert "ǐ")
-  "j"  (other-chars--insert "ǰ")
-  "k"  (other-chars--insert "ǩ")
-  "l"  (other-chars--insert "ľ")
-  "n"  (other-chars--insert "ň")
-  "o"  (other-chars--insert "ǒ")
-  "r"  (other-chars--insert "ř")
-  "s"  (other-chars--insert "š")
-  "t"  (other-chars--insert "ť")
-  "u"  (other-chars--insert "ǔ")
-  "z"  (other-chars--insert "ž")
+(evil-define-key 'spechar 'global
+  "^a"  (spechar--insert "ǎ")
+  "^c"  (spechar--insert "č")
+  "^d"  (spechar--insert "ď")
+  "^e"  (spechar--insert "ě")
+  "^g"  (spechar--insert "ǧ")
+  "^h"  (spechar--insert "ȟ")
+  "^i"  (spechar--insert "ǐ")
+  "^j"  (spechar--insert "ǰ")
+  "^k"  (spechar--insert "ǩ")
+  "^l"  (spechar--insert "ľ")
+  "^n"  (spechar--insert "ň")
+  "^o"  (spechar--insert "ǒ")
+  "^r"  (spechar--insert "ř")
+  "^s"  (spechar--insert "š")
+  "^t"  (spechar--insert "ť")
+  "^u"  (spechar--insert "ǔ")
+  "^z"  (spechar--insert "ž")
   )
 
 ;;-- end caron
 
+;;-- underdot
+(evil-define-key 'spechar 'global
+  ".ub" (spechar--insert "ḅ")
+  ".ud" (spechar--insert "ḍ")
+  ".uh" (spechar--insert "ḥ")
+  ".uk" (spechar--insert "ḳ")
+  ".ul" (spechar--insert "ḷ")
+  ".um" (spechar--insert "ṃ")
+  ".un" (spechar--insert "ṇ")
+  ".ur" (spechar--insert "ṛ")
+  ".us" (spechar--insert "ṣ")
+  ".ut" (spechar--insert "ṭ")
+  ".uv" (spechar--insert "ṿ")
+  ".uw" (spechar--insert "ẉ")
+  ".uz" (spechar--insert "ẓ")
+  ".ua" (spechar--insert "ạ")
+  ".ue" (spechar--insert "ẹ")
+  ".ui" (spechar--insert "ị")
+  ".uo" (spechar--insert "ọ")
+  ".uu" (spechar--insert "ụ")
+  ".uy" (spechar--insert "ỵ")
+  )
+
+;;-- end underdot
+
+;;-- overdot
+(evil-define-key 'spechar 'global
+  ".ob" (spechar--insert "ḃ")
+  ".od" (spechar--insert "ḋ")
+  ".oh" (spechar--insert "ḣ")
+  ".ol" (spechar--insert "")
+  ".om" (spechar--insert "ẛ")
+  ".on" (spechar--insert "ṅ")
+  ".or" (spechar--insert "ṙ")
+  ".os" (spechar--insert "ṡ")
+  ".ot" (spechar--insert "ṫ")
+  ".ow" (spechar--insert "ẇ")
+  ".oz" (spechar--insert "ż")
+  ".oa" (spechar--insert "ȧ")
+  ".oe" (spechar--insert "ė")
+  ".oo" (spechar--insert "ȯ")
+  ".oy" (spechar--insert "ẏ")
+  )
+
+;;-- end overdot
+
+;;-- stroke
+(evil-define-key 'spechar 'global
+  "sd" (spechar--insert "đ")
+  "sh" (spechar--insert "ħ")
+  "sl" (spechar--insert "ł")
+  "st" (spechar--insert "ŧ")
+  "sb" (spechar--insert "ƀ")
+  "sz" (spechar--insert "ƶ")
+  "sg" (spechar--insert "ǥ")
+  "sc" (spechar--insert "ȼ")
+  "se" (spechar--insert "ɇ")
+  "sj" (spechar--insert "ɉ")
+  "sr" (spechar--insert "ɍ")
+  "sy" (spechar--insert "ɏ")
+  "sj" (spechar--insert "ɉ")
+  "si" (spechar--insert "ɨ")
+  "sp" (spechar--insert "ᵽ")
+  "sa" (spechar--insert "ⱥ")
+  "sk" (spechar--insert "ꝁ")
+  "sf" (spechar--insert "ꞙ")
+  "su" (spechar--insert "ꞹ")
+
+  )
+
+;;-- end stroke
+
 ;;-- assemble
 
-(evil-define-key  nil  other-chars-cx8-map
-  "'"                  other-chars-acute-map
-  ","                  other-chars-cedilla-map
-  "\""                 other-chars-diaeresis-map
-  "g"                  other-chars-greek-map
-  "`"                  other-chars-grave-map
-  "l"                  other-chars-logic-map
-  "m"                  other-chars-math-map
-  "/"                  other-chars-subscript-map
-  "\\"                 other-chars-superscript-map
-  "~"                  other-chars-tilde-map
-  "^"                  other-chars-caron-map
-  "s"                  other-chars-stroke-map
-  "RET"                #'insert-char
-  )
-
-(evil-define-key nil evil-other-chars-state-map
-  "'"               other-chars-acute-map
-  ","               other-chars-cedilla-map
-  "\""              other-chars-diaeresis-map
-  "g"               other-chars-greek-map
-  "`"               other-chars-grave-map
-  "l"               other-chars-logic-map
-  "m"               other-chars-math-map
-  "/"               other-chars-subscript-map
-  "\\"              other-chars-superscript-map
-  "~"               other-chars-tilde-map
-  "^"               other-chars-caron-map
-  "-"               (other-chars--insert "—")
-  "b"               (other-chars--insert "ß")
-  "s"               other-chars-stroke-map
+(evil-define-key 'spechar 'global
+  "-"               (spechar--insert "—")
+  "b"               (spechar--insert "ß")
   (kbd "RET")       #'insert-char
-  "?"               #'other-chars-reminder
+  "?"               #'spechar-reminder
   )
 
-(defun other-chars-reminder ()
+(defun spechar-reminder ()
   (interactive)
   (message "Char Groups:\n%s"
            (string-join '("'   : Acute"
@@ -318,9 +352,12 @@
                           "\"  : Diaeresis"
                           "`   : Grave'"
                           "~   : Tilde"
+                          ".u  : Underdot"
+                          ".a  : Overdot"
                           "g   : Greek Letters"
                           "m   : Math Symbols"
                           "l   : Logic Symbols"
+                          "s   : Stroke"
                           "/   : Subscripts"
                           "\\  : Superscripts"
                           "^   : Carons"
@@ -333,14 +370,13 @@
   )
 
 (when (fboundp 'general-insert-call)
-  (define-key other-chars-cx8-map         "DEL" #'general-insert-call)
-  (define-key evil-other-chars-state-map  "DEL" #'general-insert-call)
+  (define-key evil-spechar-state-map  "DEL" #'general-insert-call)
   )
 
 ;;-- end assemble
 
-;;;###autoload (autoload 'evil-other-chars-state (macroexp-file-name) nil t)
-(evil-define-state other-chars
+;;;###autoload (autoload 'evil-spechar-state (macroexp-file-name) nil t)
+(evil-define-state spechar
   "An Insert State for characters not usually used in english"
   :tag "<ç>"
   :message "-- Chars --"
@@ -352,7 +388,7 @@
 
 ;;-- descriptions
 (when (fboundp 'faster-whichkey-add-keymap-replacement)
-  (faster-whichkey-add-keymap-replacement nil other-chars-acute-map
+  (faster-whichkey-add-keymap-replacement nil spechar-acute-map
                                           "'" "´"
                                           "a" "á"
                                           "c" "ć"
@@ -372,7 +408,7 @@
                                           "y" "ý"
                                           "z" "ź"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-cedilla-map
+  (faster-whichkey-add-keymap-replacement nil spechar-cedilla-map
                                           "c" "ç"
                                           "d" "ḑ"
                                           "e" "ȩ"
@@ -385,7 +421,7 @@
                                           "s" "ş"
                                           "t" "ţ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-diaeresis-map
+  (faster-whichkey-add-keymap-replacement nil spechar-diaeresis-map
                                           "a" "ä"
                                           "e" "ë"
                                           "h" "ḧ"
@@ -397,7 +433,7 @@
                                           "x" "ẍ"
                                           "y" "ÿ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-greek-map
+  (faster-whichkey-add-keymap-replacement nil spechar-greek-map
                                           "a" "α"
                                           "b" "β"
                                           "c" "γ"
@@ -423,7 +459,7 @@
                                           "y" "ψ"
                                           "z" "ω"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-grave-map
+  (faster-whichkey-add-keymap-replacement nil spechar-grave-map
                                           "a" "à"
                                           "e" "è"
                                           "i" "ì"
@@ -433,7 +469,7 @@
                                           "w" "ẁ"
                                           "y" "ỳ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-logic-map
+  (faster-whichkey-add-keymap-replacement nil spechar-logic-map
                                           "a" "∀"
                                           "E" "∃"
                                           "N" "∄"
@@ -454,7 +490,7 @@
                                           "]" "◇"
                                           "o" "⚬"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-math-map
+  (faster-whichkey-add-keymap-replacement nil spechar-math-map
                                           "s" "⊂"
                                           "S" "⊃"
                                           "e" "⊆"
@@ -466,7 +502,7 @@
                                           "8" "∞"
                                           "p" "π"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-subscript-map
+  (faster-whichkey-add-keymap-replacement nil spechar-subscript-map
                                           "1" "₁"
                                           "2" "₂"
                                           "3" "₃"
@@ -483,7 +519,7 @@
                                           "-" "₋"
                                           "x" "ₓ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-superscript-map
+  (faster-whichkey-add-keymap-replacement nil spechar-superscript-map
                                           "1" "¹"
                                           "2" "²"
                                           "3" "³"
@@ -496,7 +532,7 @@
                                           "i" "ⁱ"
                                           "n" "ⁿ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil other-chars-tilde-map
+  (faster-whichkey-add-keymap-replacement nil spechar-tilde-map
                                           "a" "ã"
                                           "e" "ẽ"
                                           "i" "ĩ"
@@ -507,7 +543,7 @@
                                           "y" "ỹ"
                                           )
 
-(faster-whichkey-add-keymap-replacement nil other-chars-caron-map
+(faster-whichkey-add-keymap-replacement nil spechar-caron-map
                                         "a"  "ǎ"
                                         "c"  "č"
                                         "d"  "ď"
@@ -529,5 +565,5 @@
 )
 ;;-- end descriptions
 
-(provide 'other-chars-state)
-;;; other-chars-state.el ends here
+(provide 'spechar-state)
+;;; spechar-state.el ends here
