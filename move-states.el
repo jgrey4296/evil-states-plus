@@ -7,6 +7,7 @@
 ;;-- end Header
 (require 'evil-core)
 (require 'smartparens)
+(require 'quitter-state)
 
 ;;-- vars
 (defvar sectionM-move-target 'word "what section type to move by")
@@ -20,11 +21,6 @@
 ;;-- end vars
 
 ;;-- utils
-(evil-define-state -quitter
-  "A utility state to always quit the state with Q"
-  :tag "<Q">
-  :message "-- Quitter --"
-  )
 
 (defmacro move-wrap! (state &rest body)
   " macro for wrapping a set of instructions in a return to normal state,
@@ -197,21 +193,6 @@ ie: allowing a 'window move state' that follows the cursor
  )
 
 ;;-- bindings
-(evil-define-key* '-quitter 'global
-  (kbd "SPC")   'doom/leader
-  (kbd "DEL")    #'ignore
-  "q"            #'evil-normal-state
-  "1"            #'digit-argument
-  "2"            #'digit-argument
-  "3"            #'digit-argument
-  "4"            #'digit-argument
-  "5"            #'digit-argument
-  "6"            #'digit-argument
-  "7"            #'digit-argument
-  "8"            #'digit-argument
-  "9"            #'digit-argument
-  "0"            #'digit-argument
-  )
 (evil-define-key* 'bufferM 'global
   "Q" #'bufferM-origin
   "h" (move-wrap! 'bufferM (let ((switch-to-prev-buffer-skip 'visible)) (switch-to-next-buffer)))

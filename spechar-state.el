@@ -23,9 +23,12 @@
 ;;-- end header
 (require 'evil-core)
 (require 'counsel)
+;; (require 'quitter-state)
 
-(defvar evil-spechar-state-map (make-keymap))
+(defvar evil-spechar-state-map (make-sparse-keymap))
 (suppress-keymap evil-spechar-state-map)
+
+;;-- utils
 
 (defun spechar--prefixed-unicode-char (prefix)
   " Start a counsel to insert a unicode char, with a provided selection prefix "
@@ -43,7 +46,6 @@
             :caller 'counsel-unicode-char)
   )
 
-
 (defmacro spechar--prep-counsel (prefix)
   `(lambda ()
      (interactive)
@@ -54,6 +56,32 @@
      (interactive)
      (insert ,char)))
 
+(defun spechar-reminder ()
+  (interactive)
+  (message "Char Groups:\n%s"
+           (string-join '("'   : Acute"
+                          ",   : Cedilla"
+                          "\"  : Diaeresis"
+                          "`   : Grave'"
+                          "~   : Tilde"
+                          ".u  : Underdot"
+                          ".a  : Overdot"
+                          "g   : Greek Letters"
+                          "m   : Math Symbols"
+                          "l   : Logic Symbols"
+                          "s   : Stroke"
+                          "/   : Subscripts"
+                          "\\  : Superscripts"
+                          "^   : Carons"
+                          "b   : ß (Sharp S)"
+                          "RET : Insert Interactively"
+                          )
+                        "\n"
+                        )
+           )
+  )
+
+;;-- end utils
 
 ;;-- acute
 
@@ -213,17 +241,17 @@
 
 ;;-- superscript
 (evil-define-key 'spechar 'global
-  "\1" (spechar--insert "¹")
-  "\2" (spechar--insert "²")
-  "\3" (spechar--insert "³")
-  "\4" (spechar--insert "⁴")
-  "\5" (spechar--insert "⁵")
-  "\6" (spechar--insert "⁶")
-  "\7" (spechar--insert "⁷")
-  "\8" (spechar--insert "⁸")
-  "\9" (spechar--insert "⁹")
-  "\i" (spechar--insert "ⁱ")
-  "\n" (spechar--insert "ⁿ")
+  "\\1" (spechar--insert "¹")
+  "\\2" (spechar--insert "²")
+  "\\3" (spechar--insert "³")
+  "\\4" (spechar--insert "⁴")
+  "\\5" (spechar--insert "⁵")
+  "\\6" (spechar--insert "⁶")
+  "\\7" (spechar--insert "⁷")
+  "\\8" (spechar--insert "⁸")
+  "\\9" (spechar--insert "⁹")
+  "\\i" (spechar--insert "ⁱ")
+  "\\n" (spechar--insert "ⁿ")
   )
 ;;-- end superscript
 
@@ -341,32 +369,10 @@
   "-"               (spechar--insert "—")
   "b"               (spechar--insert "ß")
   (kbd "RET")       #'insert-char
+  "DEL"             #'backward-delete-char
   "?"               #'spechar-reminder
-  )
-
-(defun spechar-reminder ()
-  (interactive)
-  (message "Char Groups:\n%s"
-           (string-join '("'   : Acute"
-                          ",   : Cedilla"
-                          "\"  : Diaeresis"
-                          "`   : Grave'"
-                          "~   : Tilde"
-                          ".u  : Underdot"
-                          ".a  : Overdot"
-                          "g   : Greek Letters"
-                          "m   : Math Symbols"
-                          "l   : Logic Symbols"
-                          "s   : Stroke"
-                          "/   : Subscripts"
-                          "\\  : Superscripts"
-                          "^   : Carons"
-                          "b   : ß (Sharp S)"
-                          "RET : Insert Interactively"
-                          )
-                        "\n"
-                        )
-           )
+  "i"               #'evil-insert-state
+  "n"               #'evi-normal-state
   )
 
 (when (fboundp 'general-insert-call)
@@ -380,187 +386,187 @@
   "An Insert State for characters not usually used in english"
   :tag "<ç>"
   :message "-- Chars --"
-  ;; :suppress-keymap nil
+  :suppress-keymap t
   :input-method t
+  :enable (-quitter motion)
   )
 
 ;; TODO transient
 
 ;;-- descriptions
-(when (fboundp 'faster-whichkey-add-keymap-replacement)
-  (faster-whichkey-add-keymap-replacement nil spechar-acute-map
-                                          "'" "´"
-                                          "a" "á"
-                                          "c" "ć"
-                                          "e" "é"
-                                          "g" "ǵ"
-                                          "i" "í"
-                                          "k" "ḱ"
-                                          "l" "ĺ"
-                                          "m" "ḿ"
-                                          "n" "ń"
-                                          "o" "ó"
-                                          "p" "ṕ"
-                                          "r" "ŕ"
-                                          "s" "ś"
-                                          "u" "ú"
-                                          "w" "ẃ"
-                                          "y" "ý"
-                                          "z" "ź"
+(when (and nil (fboundp 'faster-whichkey-add-keymap-replacement))
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "''" "´"
+                                          "'a" "á"
+                                          "'c" "ć"
+                                          "'e" "é"
+                                          "'g" "ǵ"
+                                          "'i" "í"
+                                          "'k" "ḱ"
+                                          "'l" "ĺ"
+                                          "'m" "ḿ"
+                                          "'n" "ń"
+                                          "'o" "ó"
+                                          "'p" "ṕ"
+                                          "'r" "ŕ"
+                                          "'s" "ś"
+                                          "'u" "ú"
+                                          "'w" "ẃ"
+                                          "'y" "ý"
+                                          "'z" "ź"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-cedilla-map
-                                          "c" "ç"
-                                          "d" "ḑ"
-                                          "e" "ȩ"
-                                          "g" "ģ"
-                                          "h" "ḩ"
-                                          "k" "ķ"
-                                          "l" "ļ"
-                                          "n" "ņ"
-                                          "r" "ŗ"
-                                          "s" "ş"
-                                          "t" "ţ"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          ",c" "ç"
+                                          ",d" "ḑ"
+                                          ",e" "ȩ"
+                                          ",g" "ģ"
+                                          ",h" "ḩ"
+                                          ",k" "ķ"
+                                          ",l" "ļ"
+                                          ",n" "ņ"
+                                          ",r" "ŗ"
+                                          ",s" "ş"
+                                          ",t" "ţ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-diaeresis-map
-                                          "a" "ä"
-                                          "e" "ë"
-                                          "h" "ḧ"
-                                          "i" "ï"
-                                          "o" "ö"
-                                          "t" "ẗ"
-                                          "u" "ü"
-                                          "w" "ẅ"
-                                          "x" "ẍ"
-                                          "y" "ÿ"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "\"a" "ä"
+                                          "\"e" "ë"
+                                          "\"h" "ḧ"
+                                          "\"i" "ï"
+                                          "\"o" "ö"
+                                          "\"t" "ẗ"
+                                          "\"u" "ü"
+                                          "\"w" "ẅ"
+                                          "\"x" "ẍ"
+                                          "\"y" "ÿ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-greek-map
-                                          "a" "α"
-                                          "b" "β"
-                                          "c" "γ"
-                                          "d" "δ"
-                                          "e" "ε"
-                                          "f" "ζ"
-                                          "g" "η"
-                                          "h" "θ"
-                                          "i" "ι"
-                                          "k" "κ"
-                                          "l" "λ"
-                                          "m" "μ"
-                                          "n" "ν"
-                                          "x" "ξ"
-                                          "o" "ο"
-                                          "p" "π"
-                                          "r" "ρ"
-                                          "s" "σ"
-                                          "t" "τ"
-                                          "u" "υ"
-                                          "v" "φ"
-                                          "x" "χ"
-                                          "y" "ψ"
-                                          "z" "ω"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "ga" "α"
+                                          "gb" "β"
+                                          "gc" "γ"
+                                          "gd" "δ"
+                                          "ge" "ε"
+                                          "gf" "ζ"
+                                          "gg" "η"
+                                          "gh" "θ"
+                                          "gi" "ι"
+                                          "gk" "κ"
+                                          "gl" "λ"
+                                          "gm" "μ"
+                                          "gn" "ν"
+                                          "gx" "ξ"
+                                          "go" "ο"
+                                          "gp" "π"
+                                          "gr" "ρ"
+                                          "gs" "σ"
+                                          "gt" "τ"
+                                          "gu" "υ"
+                                          "gv" "φ"
+                                          "gx" "χ"
+                                          "gy" "ψ"
+                                          "gz" "ω"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-grave-map
-                                          "a" "à"
-                                          "e" "è"
-                                          "i" "ì"
-                                          "n" "ǹ"
-                                          "o" "ò"
-                                          "u" "ù"
-                                          "w" "ẁ"
-                                          "y" "ỳ"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "`a" "à"
+                                          "`e" "è"
+                                          "`i" "ì"
+                                          "`n" "ǹ"
+                                          "`o" "ò"
+                                          "`u" "ù"
+                                          "`w" "ẁ"
+                                          "`y" "ỳ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-logic-map
-                                          "a" "∀"
-                                          "E" "∃"
-                                          "N" "∄"
-                                          "e" "∈"
-                                          "n" "¬"
-                                          "d" "∨"
-                                          "c" "∧"
-                                          "<" "⧼"
-                                          ">" "⧼"
-                                          "i" "⇒"
-                                          "I" "⇔"
-                                          "t" "⟙"
-                                          "b" "⟘"
-                                          "\\" "⊨"
-                                          "/" "⊢"
-                                          "T" "∴"
-                                          "[" "□"
-                                          "]" "◇"
-                                          "o" "⚬"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "la" "∀"
+                                          "lE" "∃"
+                                          "lN" "∄"
+                                          "le" "∈"
+                                          "ln" "¬"
+                                          "ld" "∨"
+                                          "lc" "∧"
+                                          "l<" "⧼"
+                                          "l>" "⧼"
+                                          "li" "⇒"
+                                          "lI" "⇔"
+                                          "lt" "⟙"
+                                          "lb" "⟘"
+                                          "l\\" "⊨"
+                                          "l/" "⊢"
+                                          "lT" "∴"
+                                          "l[" "□"
+                                          "l]" "◇"
+                                          "lo" "⚬"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-math-map
-                                          "s" "⊂"
-                                          "S" "⊃"
-                                          "e" "⊆"
-                                          "E" "⊇"
-                                          "n" "∅"
-                                          "i" "∩"
-                                          "u" "∪"
-                                          "q" "√"
-                                          "8" "∞"
-                                          "p" "π"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "ms" "⊂"
+                                          "mS" "⊃"
+                                          "me" "⊆"
+                                          "mE" "⊇"
+                                          "mn" "∅"
+                                          "mi" "∩"
+                                          "mu" "∪"
+                                          "mq" "√"
+                                          "m8" "∞"
+                                          "mp" "π"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-subscript-map
-                                          "1" "₁"
-                                          "2" "₂"
-                                          "3" "₃"
-                                          "4" "₄"
-                                          "5" "₅"
-                                          "6" "₆"
-                                          "7" "₇"
-                                          "8" "₈"
-                                          "9" "₉"
-                                          "0" "₀"
-                                          "j" "ⱼ"
-                                          "i" "ᵢ"
-                                          "+" "₊"
-                                          "-" "₋"
-                                          "x" "ₓ"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "/1" "₁"
+                                          "/2" "₂"
+                                          "/3" "₃"
+                                          "/4" "₄"
+                                          "/5" "₅"
+                                          "/6" "₆"
+                                          "/7" "₇"
+                                          "/8" "₈"
+                                          "/9" "₉"
+                                          "/0" "₀"
+                                          "/j" "ⱼ"
+                                          "/i" "ᵢ"
+                                          "/+" "₊"
+                                          "/-" "₋"
+                                          "/x" "ₓ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-superscript-map
-                                          "1" "¹"
-                                          "2" "²"
-                                          "3" "³"
-                                          "4" "⁴"
-                                          "5" "⁵"
-                                          "6" "⁶"
-                                          "7" "⁷"
-                                          "8" "⁸"
-                                          "9" "⁹"
-                                          "i" "ⁱ"
-                                          "n" "ⁿ"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "\\1" "¹"
+                                          "\\2" "²"
+                                          "\\3" "³"
+                                          "\\4" "⁴"
+                                          "\\5" "⁵"
+                                          "\\6" "⁶"
+                                          "\\7" "⁷"
+                                          "\\8" "⁸"
+                                          "\\9" "⁹"
+                                          "\\i" "ⁱ"
+                                          "\\n" "ⁿ"
                                           )
-  (faster-whichkey-add-keymap-replacement nil spechar-tilde-map
-                                          "a" "ã"
-                                          "e" "ẽ"
-                                          "i" "ĩ"
-                                          "n" "ñ"
-                                          "o" "õ"
-                                          "u" "ũ"
-                                          "v" "ṽ"
-                                          "y" "ỹ"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                          "~a" "ã"
+                                          "~e" "ẽ"
+                                          "~i" "ĩ"
+                                          "~n" "ñ"
+                                          "~o" "õ"
+                                          "~u" "ũ"
+                                          "~v" "ṽ"
+                                          "~y" "ỹ"
                                           )
-
-(faster-whichkey-add-keymap-replacement nil spechar-caron-map
-                                        "a"  "ǎ"
-                                        "c"  "č"
-                                        "d"  "ď"
-                                        "e"  "ě"
-                                        "g"  "ǧ"
-                                        "h"  "ȟ"
-                                        "i"  "ǐ"
-                                        "j"  "ǰ"
-                                        "k"  "ǩ"
-                                        "l"  "ľ"
-                                        "n"  "ň"
-                                        "o"  "ǒ"
-                                        "r"  "ř"
-                                        "s"  "š"
-                                        "t"  "ť"
-                                        "u"  "ǔ"
-                                        "z"  "ž"
+  (faster-whichkey-add-keymap-replacement 'spechar 'global
+                                        "^a"  "ǎ"
+                                        "^c"  "č"
+                                        "^d"  "ď"
+                                        "^e"  "ě"
+                                        "^g"  "ǧ"
+                                        "^h"  "ȟ"
+                                        "^i"  "ǐ"
+                                        "^j"  "ǰ"
+                                        "^k"  "ǩ"
+                                        "^l"  "ľ"
+                                        "^n"  "ň"
+                                        "^o"  "ǒ"
+                                        "^r"  "ř"
+                                        "^s"  "š"
+                                        "^t"  "ť"
+                                        "^u"  "ǔ"
+                                        "^z"  "ž"
                                         )
 )
 ;;-- end descriptions
