@@ -20,43 +20,43 @@
 ;;; Code:
 (require 'evil-core)
 
-(defvar insert-plus-sep "_")
+(defvar mapspace-sep "_")
 
-(defvar evil-insert-plus-state-map
+(defvar evil-mapspace-state-map
   (make-sparse-keymap)
   "Keymap for Insert State with spaces remapped.")
-(defvar evil-insert-plus-escape-to 'evil-insert-state)
+(defvar evil-mapspace-escape-to 'evil-insert-state)
 
-(defun insert-plus-set-sep (str)
-  (interactive (list (read-string (format "Separator: ('%s') " insert-plus-sep))))
-  (setq insert-plus-sep str)
+(defun mapspace-set-sep (str)
+  (interactive (list (read-string (format "Separator: ('%s') " mapspace-sep))))
+  (setq mapspace-sep str)
   )
 
-(defun insert-plus-insert-sep ()
+(defun mapspace-insert-sep ()
   (interactive)
-  (insert insert-plus-sep)
+  (insert mapspace-sep)
   )
 
-(keymap-set evil-insert-plus-state-map "ESC" #'evil-normal-state)
+(keymap-set evil-mapspace-state-map "ESC" #'evil-normal-state)
 
-(keymap-set evil-insert-plus-state-map "SPC" #'insert-plus-insert-sep)
+(keymap-set evil-mapspace-state-map "SPC" #'mapspace-insert-sep)
 
-(keymap-set evil-insert-plus-state-map "§"   #'insert-plus-set-sep)
+(keymap-set evil-mapspace-state-map "§"   #'mapspace-set-sep)
 
-(keymap-set evil-insert-plus-state-map "TAB" #'evil-insert-state)
+(keymap-set evil-mapspace-state-map "TAB" #'evil-insert-state)
 
-(keymap-set evil-insert-plus-state-map "DEL" #'backward-delete-char)
+(keymap-set evil-mapspace-state-map "DEL" #'backward-delete-char)
 
-(defun insert-plus-escape-a (&rest r)
+(defun mapspace-escape-a (&rest r)
   " extends evil-escape for this new state "
-  (when (evil-insert-plus-state-p)
+  (when (evil-mapspace-state-p)
     #'evil-normal-state)
   )
 
-(advice-add 'evil-escape--get-appropriate-func :before-until #'insert-plus-escape-a)
+(advice-add 'evil-escape--get-appropriate-func :before-until #'mapspace-escape-a)
 
-;;;###autoload (autoload 'evil-insert-plus-state (macroexp-file-name) nil t)
-(evil-define-state insert-plus
+;;;###autoload (autoload 'evil-mapspace-state (macroexp-file-name) nil t)
+(evil-define-state mapspace
   "Insert State with spaces remapped"
   :tag "<I+>"
   :message "-- Insert+ --"
@@ -66,4 +66,4 @@
   :input-method nil
   )
 
-(provide 'insert-plus-state)
+(provide 'mapspace-state)
