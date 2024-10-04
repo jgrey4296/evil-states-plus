@@ -22,10 +22,10 @@
 ;;; Code:
 ;;-- end header
 
-(require 'paren-state)
 (require 'mapspace-state)
 (require 'spechar-state)
 (require 'conflict-merge-state)
+(require 'move-states)
 
 (provide 'evil-states-plus)
 ;;; evil-states-plus.el ends here
