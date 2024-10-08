@@ -28,6 +28,16 @@
 (defvar evil-spechar-state-map (make-sparse-keymap))
 (suppress-keymap evil-spechar-state-map)
 
+;;;###autoload (autoload 'evil-spechar-state (macroexp-file-name) nil t)
+(evil-define-state spechar
+  "An Insert State for characters not usually used in english"
+  :tag "<ç>"
+  :message "-- Chars --"
+  :suppress-keymap t
+  :input-method t
+  :enable (-quitter motion)
+  )
+
 ;;-- utils
 
 (defun spechar--prefixed-unicode-char (prefix)
@@ -381,15 +391,6 @@
 
 ;;-- end assemble
 
-;;;###autoload (autoload 'evil-spechar-state (macroexp-file-name) nil t)
-(evil-define-state spechar
-  "An Insert State for characters not usually used in english"
-  :tag "<ç>"
-  :message "-- Chars --"
-  :suppress-keymap t
-  :input-method t
-  :enable (-quitter motion)
-  )
 
 ;; TODO transient
 
