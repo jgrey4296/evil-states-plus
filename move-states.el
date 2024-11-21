@@ -284,6 +284,15 @@ ie: allowing a 'window move state' that follows the cursor
 
 ;;-- end bindings
 
+(suppress-keymap evil-parenM-state-map)
+(suppress-keymap evil-bufferM-state-map)
+(suppress-keymap evil-pageM-state-map)
+(suppress-keymap evil-windowM-state-map)
+(suppress-keymap evil-sectionM-state-map)
+(suppress-keymap evil-markM-state-map)
+(suppress-keymap evil-searchM-state-map)
+(suppress-keymap evil-overlayM-state-map)
+
 (provide 'move-states)
 
 ;;-- Footer
