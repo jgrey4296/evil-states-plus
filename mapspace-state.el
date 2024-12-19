@@ -55,7 +55,7 @@
 
 (advice-add 'evil-escape--get-appropriate-func :before-until #'mapspace-escape-a)
 
-;;;###autoload (autoload 'evil-mapspace-state (macroexp-file-name) nil t)
+;;;###autoload (autoload 'evil-mapspace-state "mapspace-state" nil t)
 (evil-define-state mapspace
   "Insert State with spaces remapped"
   :tag "<I+>"
