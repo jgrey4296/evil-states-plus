@@ -23,16 +23,18 @@
 (defvar mapspace-sep "_")
 
 (defvar evil-mapspace-state-map
-  (make-sparse-keymap)
+  (make-keymap)
   "Keymap for Insert State with spaces remapped.")
 (defvar evil-mapspace-escape-to 'evil-insert-state)
 
 (defun mapspace-set-sep (str)
+  "Set the char SPC is mapped to"
   (interactive (list (read-string (format "Separator: ('%s') " mapspace-sep))))
   (setq mapspace-sep str)
   )
 
 (defun mapspace-insert-sep ()
+  "command to insert the remapped space char"
   (interactive)
   (insert mapspace-sep)
   )
