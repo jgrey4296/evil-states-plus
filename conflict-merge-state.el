@@ -1,4 +1,4 @@
-;;; -*- lexical-binding: t; -*-
+;;; conflict-merge-state.el -*- lexical-binding: t; -*-
 (require 'evil-core)
 (require 'smerge-mode)
 
@@ -21,3 +21,4 @@
 
 
 (provide 'conflict-merge-state)
+;;; conflict-merge-state.el ends here

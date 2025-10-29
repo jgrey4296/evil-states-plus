@@ -1,17 +1,15 @@
-;;; evil-states-plus.el -*- lexical-binding: t; no-byte-compile: t; -*-
-;;-- header
-;;
+;;; evil-states-plus.el --- Some extra states for evil -*- lexical-binding: t; -*-
+
 ;; Copyright (C) 2023 John Grey
-;;
-;; Author: John Grey <https://github.com/jgrey4296>
-;; Maintainer: John Grey <johngrey@Johns-Mac-mini.local>
+
+;; Author: John Grey
 ;; Created: August 27, 2023
 ;; Modified: August 27, 2023
-;; Version: 0.0.1
+;; Version: 1.0.0
 ;; Keywords:
-;; Homepage: https://github.com/jgrey4296
-;; Package-Requires: ((emacs "24.3"))
-;; Package written on: ((emacs 28.2))
+;; Homepage: https://github.com/jgrey4296/evil-states-plus
+;; Package-Requires: ((emacs "30.2") (evil) (smerge-mode) (smartparens) (counsel))
+;; Package written on: ((emacs 30.2))
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -20,7 +18,6 @@
 ;;  Some additional states for evil
 ;;
 ;;; Code:
-;;-- end header
 
 (require 'mapspace-state)
 (require 'spechar-state)
